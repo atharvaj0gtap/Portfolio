@@ -18,43 +18,43 @@ const Header = () => {
     
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-      }, [lastScrollY]);
+    }, [lastScrollY]);
 
     return (
-        <nav className={`w-full z-20 sticky top-0 transition-transform duration-300 ${
+        <nav className={`w-full z-20 sticky top-0 transition-transform duration-300 backdrop-blur-sm bg-surface-base/90 border-b border-border-subtle ${
             isVisible ? 'translate-y-0' : '-translate-y-full'
           }`}>
             <div className='flex justify-between mx-auto h-20 items-center px-8'>
                 {/* Logo */}
-                <h1 className='text-3xl font-bold'>Portfolio</h1>
+                <h1 className='text-3xl font-bold bg-gradient-to-r from-accent-light to-accent-main bg-clip-text text-transparent'>JagtapWorks</h1>
+                
                 {/* Hamburger menu */}
-                <div className='md:hidden text-3xl'>
+                <div className='md:hidden text-3xl text-accent-main'>
                     <button onClick={() => setisOpen(!isOpen)}>
                         {isOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
                     </button>
                 </div>
+                
                 {/* Desktop menu */}
-                <ul className='hidden md:flex gap-8'>
-                    <li><a href="#home" className="" >Home</a></li>
-                    <li><a href="#about" className="" >About</a></li>
-                    <li><a href="#services" className="" >Services</a></li>
-                    <li><a href="#contact" className="" >Contact</a></li>
+                <ul className='hidden md:flex gap-8 text-text-secondary'>
+                    <li><a href="#home" className="hover:text-accent-main transition-colors" >Home</a></li>
+                    <li><a href="#about" className="hover:text-accent-main transition-colors" >About</a></li>
+                    <li><a href="#projects" className="hover:text-accent-main transition-colors" >Projects</a></li>
+                    <li><a href="#contact" className="hover:text-accent-main transition-colors" >Contact</a></li>
                 </ul>
             </div>
+            
             {/* Mobile menu */}
-            {isOpen ? (
-                <div
-                className={`${
-                  isOpen ? 'animate-dropdown' : 'hidden'
-                } origin-top transform fixed inset-x-0 top-20`}>
-                    <ul className='flex-col md:hidden text-center'>
-                        <li className='py-2'><a href="#home" className="" >Home</a></li>
-                        <li className='py-2'><a href="#about" className="" >About</a></li>
-                        <li className='py-2'><a href="#services" className="" >Services</a></li>
-                        <li className='py-2'><a href="#contact" className="" >Contact</a></li>
+            {isOpen && (
+                <div className="animate-dropdown origin-top transform fixed inset-x-0 top-20 bg-surface-overlay border-b border-border-subtle">
+                    <ul className='flex-col md:hidden text-center py-4'>
+                        <li className='py-3'><a href="#home" className="text-text-secondary hover:text-accent-main transition-colors" >Home</a></li>
+                        <li className='py-3'><a href="#about" className="text-text-secondary hover:text-accent-main transition-colors" >About</a></li>
+                        <li className='py-3'><a href="#projects" className="text-text-secondary hover:text-accent-main transition-colors" >Projects</a></li>
+                        <li className='py-3'><a href="#contact" className="text-text-secondary hover:text-accent-main transition-colors" >Contact</a></li>
                     </ul>
                 </div>
-                ) : null}
+            )}
         </nav>
     );
 };
