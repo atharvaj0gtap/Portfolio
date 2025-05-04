@@ -172,7 +172,7 @@ const Project = () => {
       <section id="projects" className="min-h-screen p-8">
         {/* Title reveals separately */}
         <RevealWrapper delay={0.1} duration={0.6}>
-          <h2 className="text-3xl font-bold mb-12 text-accent-light text-center">My Projects</h2>
+          <h2 className="text-3xl font-bold mb-12 text-accent-light text-center">Projects</h2>
         </RevealWrapper>
         
         {/* Show folder if not opened, otherwise show projects */}

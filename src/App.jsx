@@ -5,10 +5,19 @@ import Home from './sections/Home';
 import Project from './sections/Project';
 import About from './sections/About';
 import RevealWrapper from './components/RevealWrapper';
+import StarryBackground from './components/StarryBackground';
 
 function App() {
   return (
     <div className='flex flex-col min-h-screen bg-surface-base'>
+      <StarryBackground 
+        densityRatio={0.3}
+        sizeLimit={4}
+        defaultAlpha={0.5} 
+        scaleLimit={3}
+        proximityRatio={0.15} 
+      />
+      
       <Header />
       
       {/* Home section doesn't need reveal animation as it's the first view */}
