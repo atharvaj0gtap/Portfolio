@@ -268,12 +268,7 @@ const Testimonials = () => {
         document.body.style.cursor = 'pointer';
         sun.scale.set(1.2, 1.2, 1.2);
         
-        // Create a pulse effect on hover
-        const hoverTime = Date.now() * 0.001;
-        const pulseScale = 1.2 + Math.sin(hoverTime * 3) * 0.05;
-        sun.scale.set(pulseScale, pulseScale, pulseScale);
-        
-        // Display sun message
+        // Rest of code remains the same
         setActiveTestimonial({
           id: 'sun',
           name: sunData.title,
@@ -332,7 +327,7 @@ const Testimonials = () => {
     // Add sun focus events
     sun.userData.htmlElement.addEventListener('focus', () => {
       sun.userData.isFocused = true;
-      sun.scale.set(1.2, 1.2, 1.2);
+      sun.scale.set(1.2, 1.2, 1.2); 
       
       setActiveTestimonial({
         id: 'sun',
@@ -391,7 +386,7 @@ const Testimonials = () => {
       const intersects = raycaster.intersectObjects(planets);
       if (intersects.length > 0) {
         const planet = intersects[0].object;
-        planet.scale.set(1.3, 1.3, 1.3);
+        planet.scale.set(1.2, 1.2, 1.2);
         
         const planetId = planet.userData.testimonialId;
         renderer.domElement.dataset.touchedElementId = planetId;
@@ -449,10 +444,6 @@ const Testimonials = () => {
           if (orbitPaths[orbitIndex]) {
             orbitPaths[orbitIndex].material.opacity = 0.6;
             
-            // Replace this line:
-            // orbitPaths[orbitIndex].material.color.set(planet.material.color);
-            
-            // With this:
             const planetId = planet.userData.testimonialId;
             const testimonialItem = testimonialData.find(t => t.id === planetId);
             if (testimonialItem && testimonialItem.color) {
@@ -501,7 +492,7 @@ const Testimonials = () => {
       
       // Animate planets in orbit
       planets.forEach(planet => {
-        planet.userData.angle += planet.userData.orbitSpeed / 30; // Slow motion
+        planet.userData.angle += planet.userData.orbitSpeed / 30; 
         
         planet.position.x = Math.cos(planet.userData.angle) * planet.userData.orbitRadius;
         planet.position.z = Math.sin(planet.userData.angle) * planet.userData.orbitRadius;
@@ -512,13 +503,6 @@ const Testimonials = () => {
       
       // Animate sun rotation
       sun.rotation.y += 0.001;
-      
-      // Add subtle pulsing effect to sun when not hovered
-      if (!sunActive && !sun.userData.isFocused) {
-        const time = Date.now() * 0.001;
-        const pulseScale = 1 + Math.sin(time) * 0.03;
-        sun.scale.set(pulseScale, pulseScale, pulseScale);
-      }
       
       // Update focus elements positions
       const updateFocusElements = () => {
