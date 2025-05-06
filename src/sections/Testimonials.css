@@ -194,6 +194,44 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+.sun-message {
+  background: rgba(30, 30, 10, 0.85);
+  border: 1px solid rgba(245, 233, 66, 0.3);
+  box-shadow: 0 10px 25px rgba(245, 233, 66, 0.2);
+}
+
+.sun-message .testimonial-quote,
+.sun-message .testimonial-author {
+  background: linear-gradient(135deg, #f5e942, #fff8a8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sun-message .testimonial-author {
+  border-top: 1px solid rgba(245, 233, 66, 0.3);
+}
+
+/* Add glow effect to sun bubble */
+.sun-message::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: rgba(245, 233, 66, 0.1);
+  border-radius: 20px;
+  z-index: -1;
+  filter: blur(10px);
+  animation: sunPulse 3s infinite alternate;
+}
+
+@keyframes sunPulse {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.05); }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) { 
   .modal-grid {
@@ -235,4 +273,33 @@
     padding: 12px 20px; /* Larger touch target */
     margin: 5px;
   }
+}
+
+/* Hidden elements for keyboard accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.planet-focus-button {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.001; /* Nearly invisible but focusable */
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Focus indicator styles */
+.planet-focus-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(92, 150, 255, 0.8);
+  border-radius: 50%;
 }
