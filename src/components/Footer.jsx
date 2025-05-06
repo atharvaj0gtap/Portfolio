@@ -10,10 +10,7 @@ const Footer = () => {
                     </a>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-text-secondary sm:mb-0">
                         <li>
-                            <a href="#about" className="hover:text-accent-main me-4 md:me-6">About</a>
-                        </li>
-                        <li>
-                            <a href="#contact" className="hover:text-accent-main">Contact</a>
+                            <a href="#resume" className="hover:text-accent-main me-4 md:me-6">Resume</a>
                         </li>
                     </ul>
                 </div>

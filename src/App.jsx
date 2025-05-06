@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './sections/Home';
 import Project from './sections/Project';
 import About from './sections/About';
+import Testimonials from './sections/Testimonials';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
 
@@ -33,8 +34,13 @@ function App() {
         <Project />
       </RevealWrapper>
       
-      {/* Wrap elements inside sections for more granular control */}
+      {/* New Testimonials section */}
       <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
+        <Testimonials />
+      </RevealWrapper>
+      
+      {/* Wrap elements inside sections for more granular control */}
+      <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
         <Footer />
       </RevealWrapper>
     </div>

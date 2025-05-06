@@ -177,7 +177,7 @@ const Project = () => {
         
         {/* Show folder if not opened, otherwise show projects */}
         {!folderOpened ? (
-          <div className="flex justify-center items-center my-20">
+          <div className="flex justify-center items-center mt-32 mb-20">
             <ProjectFolder 
               color="#5C96FF" 
               size={2} 
