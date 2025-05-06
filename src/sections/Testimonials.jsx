@@ -11,7 +11,6 @@ const testimonialData = [
     role: "Senior Developer at TechCorp",
     company: "TechCorp",
     testimonial: "Atharva's attention to detail and problem-solving skills are exceptional. The solutions he developed streamlined our processes by 40%.",
-    image: "/assets/testimonials/person1.jpg",
     color: "#FF6B6B" // Mars-like
   },
   {
@@ -20,7 +19,6 @@ const testimonialData = [
     role: "Product Manager",
     company: "InnovateX",
     testimonial: "Working with Atharva was a game-changer for our project. His ability to translate complex requirements into elegant code made all the difference.",
-    image: "/assets/testimonials/person2.jpg",
     color: "#4ECDC4" // Neptune-like
   },
   {
@@ -29,7 +27,6 @@ const testimonialData = [
     role: "CTO",
     company: "StartupVision",
     testimonial: "Atharva not only delivered on time but exceeded our expectations with additional optimizations we hadn't even considered.",
-    image: "/assets/testimonials/person3.jpg",
     color: "#FFD166" // Saturn-like
   },
 ];
@@ -91,13 +88,20 @@ const Testimonials = () => {
     pointLight.position.set(0, 0, 0);
     scene.add(pointLight);
     
+    // Add at the top of your useEffect
+    const textureLoader = new THREE.TextureLoader();
+
+    // Add texture to the sun
+    const sunTexture = textureLoader.load('/assets/textures/sun.jpg');
+    const sunMaterial = new THREE.MeshStandardMaterial({
+      map: sunTexture,
+      emissive: 0xf5e942,
+      emissiveIntensity: 0.6,
+      emissiveMap: sunTexture // Use same texture for emissive
+    });
+    
     // Create sun (logo) with interactivity
     const sunGeometry = new THREE.SphereGeometry(3, 32, 32);
-    const sunMaterial = new THREE.MeshStandardMaterial({
-      emissive: 0xf5e942,
-      emissiveIntensity: 1,
-      color: 0xf5e942
-    });
     const sun = new THREE.Mesh(sunGeometry, sunMaterial);
     
     // Add user data to enable interaction
@@ -147,8 +151,11 @@ const Testimonials = () => {
       
       // Create planet
       const planetGeometry = new THREE.SphereGeometry(1.2, 32, 32);
+      
+      // Load a texture based on planet type
+      const planetTexture = textureLoader.load(`/assets/textures/${item.id}.jpg`);
       const planetMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(item.color),
+        map: planetTexture,
         roughness: 0.7,
         metalness: 0.3
       });
@@ -307,7 +314,12 @@ const Testimonials = () => {
         const orbitIndex = planet.userData.orbitPathIndex;
         if (orbitPaths[orbitIndex]) {
           orbitPaths[orbitIndex].material.opacity = 0.6;
-          orbitPaths[orbitIndex].material.color.set(planet.material.color);
+          
+          const planetId = planet.userData.testimonialId;
+          const testimonialItem = testimonialData.find(t => t.id === planetId);
+          if (testimonialItem && testimonialItem.color) {
+            orbitPaths[orbitIndex].material.color.set(testimonialItem.color);
+          }
         }
         
         const testimonial = testimonialData.find(t => t.id === planet.userData.testimonialId);
@@ -436,7 +448,16 @@ const Testimonials = () => {
           const orbitIndex = planet.userData.orbitPathIndex;
           if (orbitPaths[orbitIndex]) {
             orbitPaths[orbitIndex].material.opacity = 0.6;
-            orbitPaths[orbitIndex].material.color.set(planet.material.color);
+            
+            // Replace this line:
+            // orbitPaths[orbitIndex].material.color.set(planet.material.color);
+            
+            // With this:
+            const planetId = planet.userData.testimonialId;
+            const testimonialItem = testimonialData.find(t => t.id === planetId);
+            if (testimonialItem && testimonialItem.color) {
+              orbitPaths[orbitIndex].material.color.set(testimonialItem.color);
+            }
           }
           
           // Show testimonial
@@ -575,7 +596,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-8 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center">What People Say</h2>
+        <h2 className="text-3xl font-bold mb-12 text-accent-light text-center">What People Say</h2>
         
         <div 
           ref={containerRef} 
