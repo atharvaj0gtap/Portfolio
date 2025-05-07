@@ -1,50 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import './Testimonials.css';
-import TestimonialModal from '../components/TestimonialModal';
+import { testimonialData, sunData } from '../data/testimonialData';
 
-const testimonialData = [
-  {
-    id: 1,
-    name: "Alex Johnson",
-    role: "Senior Developer at TechCorp",
-    company: "TechCorp",
-    testimonial: "Atharva's attention to detail and problem-solving skills are exceptional. The solutions he developed streamlined our processes by 40%.",
-    color: "#FF6B6B" // Mars-like
-  },
-  {
-    id: 2,
-    name: "Sarah Chen",
-    role: "Product Manager",
-    company: "InnovateX",
-    testimonial: "Working with Atharva was a game-changer for our project. His ability to translate complex requirements into elegant code made all the difference.",
-    color: "#4ECDC4" // Neptune-like
-  },
-  {
-    id: 3,
-    name: "Michael Rodriguez",
-    role: "CTO",
-    company: "StartupVision",
-    testimonial: "Atharva not only delivered on time but exceeded our expectations with additional optimizations we hadn't even considered.",
-    color: "#FFD166" // Saturn-like
-  },
-];
-
-// Add the sun message data
-const sunData = {
-  message: "Welcome to my universe of code! I'm Atharva, a developer who believes in creating meaningful experiences that bring ideas to life.",
-  title: "Atharva Jagtap",
-  subtitle: "Software Developer"
-};
-
-const Testimonials = () => {
+const PlanetarySystem = ({ 
+  setActiveTestimonial, 
+  setModalOpen, 
+  setSunActive 
+}) => {
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
-  const [activeTestimonial, setActiveTestimonial] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const planetsRef = useRef([]);
-  const [sunActive, setSunActive] = useState(false); // Track if sun is active
   
   useEffect(() => {
     if (!containerRef.current) return;
@@ -88,19 +54,18 @@ const Testimonials = () => {
     pointLight.position.set(0, 0, 0);
     scene.add(pointLight);
     
-    // Add at the top of your useEffect
+    // Load textures
     const textureLoader = new THREE.TextureLoader();
-
-    // Add texture to the sun
+    
+    // Create sun with texture
     const sunTexture = textureLoader.load('/assets/textures/sun.jpg');
     const sunMaterial = new THREE.MeshStandardMaterial({
       map: sunTexture,
       emissive: 0xf5e942,
       emissiveIntensity: 0.6,
-      emissiveMap: sunTexture // Use same texture for emissive
+      emissiveMap: sunTexture
     });
     
-    // Create sun (logo) with interactivity
     const sunGeometry = new THREE.SphereGeometry(3, 32, 32);
     const sun = new THREE.Mesh(sunGeometry, sunMaterial);
     
@@ -133,10 +98,10 @@ const Testimonials = () => {
       
       const ellipse = new THREE.Line(geometry, material);
       ellipse.rotation.x = Math.PI / 2;
-      ellipse.userData = { planetIndex: index }; // Store which planet this orbit belongs to
+      ellipse.userData = { planetIndex: index };
       scene.add(ellipse);
       
-      return ellipse; // Return the ellipse so we can reference it later
+      return ellipse;
     };
     
     // Store orbit paths references
@@ -266,7 +231,7 @@ const Testimonials = () => {
       if (sunIntersects.length > 0) {
         // Hover effect for sun
         document.body.style.cursor = 'pointer';
-        sun.scale.set(1.2, 1.2, 1.2);
+        sun.scale.set(1.3, 1.3, 1.3); // Now matching planet scale
         
         // Rest of code remains the same
         setActiveTestimonial({
@@ -319,47 +284,10 @@ const Testimonials = () => {
         
         const testimonial = testimonialData.find(t => t.id === planet.userData.testimonialId);
         setActiveTestimonial(testimonial);
-      } else if (!sunActive) {
+      } else if (!sunIntersects.length > 0) {
         setActiveTestimonial(null);
       }
     };
-    
-    // Add sun focus events
-    sun.userData.htmlElement.addEventListener('focus', () => {
-      sun.userData.isFocused = true;
-      sun.scale.set(1.2, 1.2, 1.2); 
-      
-      setActiveTestimonial({
-        id: 'sun',
-        name: sunData.title,
-        role: sunData.subtitle,
-        testimonial: sunData.message,
-        company: "",
-        color: "#f5e942" // Sun color
-      });
-    });
-    
-    sun.userData.htmlElement.addEventListener('blur', () => {
-      sun.userData.isFocused = false;
-      sun.scale.set(1, 1, 1);
-      setActiveTestimonial(null);
-    });
-    
-    // Add keydown event for Enter/Space activation on sun
-    sun.userData.htmlElement.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        setActiveTestimonial({
-          id: 'sun',
-          name: sunData.title,
-          role: sunData.subtitle,
-          testimonial: sunData.message,
-          company: "",
-          color: "#f5e942" // Sun color
-        });
-        setModalOpen(true);
-      }
-    });
     
     // Add touch events for mobile users
     const handleTouchStart = (event) => {
@@ -377,7 +305,7 @@ const Testimonials = () => {
       // Check for sun intersection
       const sunIntersects = raycaster.intersectObject(sun);
       if (sunIntersects.length > 0) {
-        sun.scale.set(1.2, 1.2, 1.2);
+        sun.scale.set(1.3, 1.3, 1.3);
         renderer.domElement.dataset.touchedElementId = 'sun';
         return;
       }
@@ -386,7 +314,7 @@ const Testimonials = () => {
       const intersects = raycaster.intersectObjects(planets);
       if (intersects.length > 0) {
         const planet = intersects[0].object;
-        planet.scale.set(1.2, 1.2, 1.2);
+        planet.scale.set(1.3, 1.3, 1.3);
         
         const planetId = planet.userData.testimonialId;
         renderer.domElement.dataset.touchedElementId = planetId;
@@ -421,6 +349,7 @@ const Testimonials = () => {
       renderer.domElement.dataset.touchedElementId = '';
     };
 
+    // Add event listeners
     renderer.domElement.addEventListener('click', handleClick);
     renderer.domElement.addEventListener('mousemove', handleMouseMove);
     renderer.domElement.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -483,6 +412,43 @@ const Testimonials = () => {
       });
     };
     
+    // Add sun focus events
+    sun.userData.htmlElement.addEventListener('focus', () => {
+      sun.userData.isFocused = true;
+      sun.scale.set(1.3, 1.3, 1.3); 
+      
+      setActiveTestimonial({
+        id: 'sun',
+        name: sunData.title,
+        role: sunData.subtitle,
+        testimonial: sunData.message,
+        company: "",
+        color: "#f5e942" // Sun color
+      });
+    });
+    
+    sun.userData.htmlElement.addEventListener('blur', () => {
+      sun.userData.isFocused = false;
+      sun.scale.set(1, 1, 1);
+      setActiveTestimonial(null);
+    });
+    
+    // Add keydown event for Enter/Space activation on sun
+    sun.userData.htmlElement.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveTestimonial({
+          id: 'sun',
+          name: sunData.title,
+          role: sunData.subtitle,
+          testimonial: sunData.message,
+          company: "",
+          color: "#f5e942" // Sun color
+        });
+        setModalOpen(true);
+      }
+    });
+    
     // Call the focus handler
     handleFocusIn();
     
@@ -519,9 +485,20 @@ const Testimonials = () => {
             planet.userData.htmlElement.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
           }
         });
+        
+        // Update sun focus element
+        if (sun.userData.htmlElement) {
+          const vector = new THREE.Vector3();
+          vector.setFromMatrixPosition(sun.matrixWorld);
+          vector.project(camera);
+          
+          const x = (vector.x * 0.5 + 0.5) * width;
+          const y = (-vector.y * 0.5 + 0.5) * height;
+          
+          sun.userData.htmlElement.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+        }
       };
       
-      // Update focus elements positions
       updateFocusElements();
       
       controls.update();
@@ -557,6 +534,10 @@ const Testimonials = () => {
         scene.remove(planet);
         planet.geometry.dispose();
         planet.material.dispose();
+        
+        if (planet.userData.htmlElement && planet.userData.htmlElement.parentNode) {
+          planet.userData.htmlElement.parentNode.removeChild(planet.userData.htmlElement);
+        }
       });
       
       scene.remove(sun);
@@ -565,52 +546,20 @@ const Testimonials = () => {
       
       renderer.dispose();
       
-      // Clean up focus elements
-      planets.forEach(planet => {
-        if (planet.userData.htmlElement && planet.userData.htmlElement.parentNode) {
-          planet.userData.htmlElement.parentNode.removeChild(planet.userData.htmlElement);
-        }
-      });
+      // Clean up sun's HTML element
+      if (sun.userData.htmlElement && sun.userData.htmlElement.parentNode) {
+        sun.userData.htmlElement.parentNode.removeChild(sun.userData.htmlElement);
+      }
     };
-  }, []);
-  
-  // Customize the appearance of sun message
-  const isSunMessage = activeTestimonial && activeTestimonial.id === 'sun';
-  
+  }, [setActiveTestimonial, setModalOpen, setSunActive]);
+
   return (
-    <section id="testimonials" className="py-8 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-accent-light text-center">What People Say</h2>
-        
-        <div 
-          ref={containerRef} 
-          className="planetary-container"
-          style={{ height: '500px' }}
-        />
-        
-        {/* Show testimonial or sun message */}
-        {activeTestimonial && !modalOpen && (
-          <div className={`testimonial-bubble ${isSunMessage ? 'sun-message' : ''}`}>
-            <p className="testimonial-quote">"{activeTestimonial.testimonial}"</p>
-            <div className="testimonial-author">
-              <span className="font-bold">{activeTestimonial.name}</span>
-              <span className="text-sm opacity-75">{activeTestimonial.role}</span>
-              {activeTestimonial.company && (
-                <span className="text-sm opacity-75"> at {activeTestimonial.company}</span>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-      
-      {/* Use our modal component */}
-      <TestimonialModal 
-        isOpen={modalOpen}
-        testimonial={activeTestimonial}
-        onClose={() => setModalOpen(false)}
-      />
-    </section>
+    <div 
+      ref={containerRef} 
+      className="planetary-container"
+      style={{ height: '500px' }}
+    />
   );
 };
 
-export default Testimonials;
+export default PlanetarySystem;

@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import Home from './sections/Home';
 import Project from './sections/Project';
 import About from './sections/About';
-import Testimonials from './sections/Testimonials';
+import Testimonials from './sections/Testimonials/index';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
 
