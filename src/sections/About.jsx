@@ -3,7 +3,118 @@ import RevealWrapper from "../components/RevealWrapper";
 import StaggeredReveal from "../components/StaggeredReveal";
 import SpotlightCard from "../components/SpotlightCard";
 
+// Modified SkillScroller for technical skills (icons only)
+const TechSkillScroller = ({ items }) => {
+  return (
+    <div className="relative overflow-hidden py-2">
+      <div className="flex overflow-x-auto no-scrollbar">
+        <div className="flex animate-scroll-slow">
+          {items.map((item, index) => (
+            <div 
+              key={index}
+              className="flex-none mx-4 flex items-center justify-center"
+            >
+              <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
+                {item.icon}
+              </div>
+            </div>
+          ))}
+          {/* Duplicate items for continuous scroll effect */}
+          {items.map((item, index) => (
+            <div 
+              key={`dup-${index}`} 
+              className="flex-none mx-4 flex items-center justify-center"
+            >
+              <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
+                {item.icon}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Modified SkillScroller for professional skills (text only)
+const ProfSkillScroller = ({ items }) => {
+  return (
+    <div className="relative overflow-hidden py-2">
+      <div className="flex overflow-x-auto no-scrollbar">
+        <div className="flex animate-scroll-slow-reverse">
+          {items.map((item, index) => (
+            <div 
+              key={index}
+              className="flex-none flex items-center justify-center"
+            >
+              <div className="px-6 py-3 rounded-xl text-text-secondary">
+                {item.label}
+              </div>
+            </div>
+          ))}
+          {/* Duplicate items for continuous scroll effect */}
+          {items.map((item, index) => (
+            <div 
+              key={`dup-${index}`} 
+              className="flex-none flex items-center justify-center"
+            >
+              <div className="px-6 py-3 rounded-xl text-text-secondary">
+                {item.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const About = () => {
+    // Technical skills with icons only
+    const technicalSkills = [
+        { icon: <img src="/assets/icons/python.png" alt="Python" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/java.png" alt="Java" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/csharp.png" alt="Csharp" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/react.png" alt="React" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/nodejs.png" alt="Nodejs" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/tailwindcss.png" alt="TailwindCSS" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/playwright.png" alt="Playwright" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/jest.png" alt="Jest" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/vitejs.png" alt="Vitejs" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/html.png" alt="HTML" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/css.png" alt="CSS" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/r.png" alt="R" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/unity.png" alt="Unity" className="h-10 w-10" /> },
+        //{ icon: <img src="/assets/icons/flutter.png" alt="Flutter" className="h-10 w-10" /> },
+        //{ icon: <img src="/assets/icons/dart.png" alt="Dart" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/androidstudio.png" alt="AndroidStudio" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/mysql.png" alt="Mysql" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/mongodb.png" alt="MongoDB" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/firebase.png" alt="Firebase" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/pytorch.png" alt="PyTorch" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/pandas.png" alt="Pandas" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/tableau.png" alt="Tableau" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/docker.png" alt="Docker" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/vscode.png" alt="VSCode" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/azure.png" alt="Azure" className="h-10 w-10" /> },
+        { icon: <img src="/assets/icons/cloudflare.png" alt="Cloudflare" className="h-10 w-10" /> },
+    ];
+
+    // Professional skills with labels only
+    const professionalSkills = [
+        { label: "Time Management" },
+        { label: "Adaptability" },
+        { label: "Problem Solving" },
+        { label: "Collaboration" },
+        { label: "Critical Thinking" },
+        { label: "Project Management" },
+        { label: "Agile Methodologies" },
+        { label: "Team Leadership" },
+        { label: "Communication" },
+        { label: "Story Telling" },
+        { label: "Financial Analysis" },
+    ];
+
     return (
         <section id="about" className="min-h-screen flex items-center justify-center p-8">
             <RevealWrapper delay={0.1} duration={0.6}>
@@ -12,31 +123,16 @@ const About = () => {
                     
                     <StaggeredReveal baseDelay={0.2} staggerDelay={0.1} duration={0.5}>
                         <p className="text-text-secondary mb-4">
-                            I'm a passionate developer with expertise in modern web technologies and a focus on creating 
-                            intuitive, performant user experiences.
+                            I'm a computer science enthusiast with a passion for creating intuitive, performant solutions that solve real-world problems.
                         </p>
                         
                         <p className="text-text-secondary mb-4">
-                            With a background in software engineering and data analysis, I bring a unique perspective to
-                            problem-solving and application architecture.
+                            With interests spanning both technology and the finance/management sector, I bring a unique interdisciplinary perspective to projects. This diverse background allows me to bridge technical implementation with business objectives, creating solutions that are both technically sound and strategically aligned.
                         </p>
                         
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-                            <div className="p-4 bg-surface-highest rounded-lg">
-                                <h3 className="font-medium text-accent-light">Front-End</h3>
-                                <p className="text-text-secondary text-sm mt-2">React, TypeScript, Tailwind CSS</p>
-                            </div>
-                            
-                            <div className="p-4 bg-surface-highest rounded-lg">
-                                <h3 className="font-medium text-accent-light">Back-End</h3>
-                                <p className="text-text-secondary text-sm mt-2">Node.js, Python, RESTful APIs</p>
-                            </div>
-                            
-                            <div className="p-4 bg-surface-highest rounded-lg">
-                                <h3 className="font-medium text-accent-light">Data</h3>
-                                <p className="text-text-secondary text-sm mt-2">SQL, Data Analysis, Visualization</p>
-                            </div>
-                        </div>
+                        <TechSkillScroller items={technicalSkills} />
+                    
+                        <ProfSkillScroller items={professionalSkills} />
                     </StaggeredReveal>
                 </SpotlightCard>
             </RevealWrapper>

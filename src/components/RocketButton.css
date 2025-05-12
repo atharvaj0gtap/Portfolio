@@ -1,0 +1,75 @@
+.rocket-button {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.rocket-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 60%, 65%, 0.3),
+    hsl(220, 60%, 55%, 0.8),
+    hsl(220, 60%, 65%, 0.3),
+    hsl(220, 60%, 55%, 0.8)
+  );
+  background-size: 300% 100%;
+  animation: movingBorder 5s linear infinite;
+  filter: blur(1px);
+}
+
+.rocket-button:hover::before {
+  animation: movingBorderFast 5s linear infinite;
+  filter: blur(1.5px);
+  background: linear-gradient(
+    90deg,
+    hsl(220, 80%, 75%, 0.5),
+    hsl(220, 80%, 65%, 1),
+    hsl(220, 80%, 75%, 0.5),
+    hsl(220, 80%, 65%, 1)
+  );
+}
+
+@keyframes movingBorder {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+@keyframes movingBorderFast {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+/* Make sure the button content is above the animated border */
+.rocket-button > * {
+  position: relative;
+  z-index: 2;
+}
+
+.flame-glow {
+    filter: drop-shadow(0 0 5px rgba(255, 100, 0, 0.7));
+    transform-origin: center bottom;
+  }
+  
+  .rocket-hover {
+    transition: filter 0.3s ease;
+  }
+  
+  .rocket-hover:hover {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+  }

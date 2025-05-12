@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RocketButton from '../components/RocketButton';
 
 const Home = () => {
     const [roleIndex, setRoleIndex] = useState(0);
@@ -48,7 +49,7 @@ const Home = () => {
                 <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-accent-main/10 rounded-full blur-3xl"></div>
             </div>
             
-            <div className={`max-w-4xl mx-auto text-center px-4 z-10 transition-all duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+            <div className={`max-w-4xl mx-auto text-center mb-8 px-4 z-10 transition-all duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
                     Hi, I am <span className="text-accent-main">Atharva Jagtap</span>
                 </h1>
@@ -61,13 +62,8 @@ const Home = () => {
                     </span>
                 </div>
                 
-                <div className={`transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-                    <a 
-                        href="#projects" 
-                        className="px-6 py-3 bg-surface-overlay border border-accent-main/50 text-text-primary rounded-lg hover:bg-accent-main hover:text-surface-base transition-all duration-300"
-                    >
-                        View My Work
-                    </a>
+                <div className={`transition-all duration-900 delay-300 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+                    <RocketButton href="#about" text="Discover More" />
                 </div>
             </div>
         </section>

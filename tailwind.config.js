@@ -42,6 +42,8 @@ module.exports = {
         dropdown: 'dropdown 0.3s ease-in-out',
         blink: 'blink 1s step-end infinite',
         fadeIn: 'fadeIn 0.5s ease-in-out',
+        'scroll-slow': 'scroll 25s linear infinite',
+        'scroll-slow-reverse': 'scrollReverse 25s linear infinite',
       },
       keyframes: {
         dropdown: {
@@ -55,6 +57,14 @@ module.exports = {
         fadeIn: {
           '0%': { opacity: 0, transform: 'translateY(10px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
+        },
+        scrollReverse: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' }
         }
       },
       boxShadow: {
@@ -63,5 +73,18 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  variants: {},
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.no-scrollbar': {
+          'scrollbarWidth': 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };

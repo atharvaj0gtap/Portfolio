@@ -121,8 +121,8 @@ const PlanetarySystem = ({
       const planetTexture = textureLoader.load(`/assets/textures/${item.id}.jpg`);
       const planetMaterial = new THREE.MeshStandardMaterial({
         map: planetTexture,
-        roughness: 0.7,
-        metalness: 0.3
+        roughness: 0.9,
+        metalness: 0.2,
       });
       const planet = new THREE.Mesh(planetGeometry, planetMaterial);
       
