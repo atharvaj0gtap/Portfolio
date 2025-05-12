@@ -3,16 +3,16 @@ import RevealWrapper from "../components/RevealWrapper";
 import StaggeredReveal from "../components/StaggeredReveal";
 import SpotlightCard from "../components/SpotlightCard";
 
-// Modified SkillScroller for technical skills (icons only)
+// Modified SkillScroller for technical skills with mobile optimization
 const TechSkillScroller = ({ items }) => {
   return (
-    <div className="relative overflow-hidden py-2">
-      <div className="flex overflow-x-auto no-scrollbar">
+    <div className="relative overflow-hidden py-2 w-full">
+      <div className="flex overflow-x-auto no-scrollbar w-full">
         <div className="flex animate-scroll-slow">
           {items.map((item, index) => (
             <div 
               key={index}
-              className="flex-none mx-4 flex items-center justify-center"
+              className="flex-none mx-1 sm:mx-2 md:mx-4 flex items-center justify-center"
             >
               <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
                 {item.icon}
@@ -23,7 +23,7 @@ const TechSkillScroller = ({ items }) => {
           {items.map((item, index) => (
             <div 
               key={`dup-${index}`} 
-              className="flex-none mx-4 flex items-center justify-center"
+              className="flex-none mx-1 sm:mx-2 md:mx-4 flex items-center justify-center"
             >
               <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
                 {item.icon}
@@ -36,18 +36,18 @@ const TechSkillScroller = ({ items }) => {
   );
 };
 
-// Modified SkillScroller for professional skills (text only)
+// Modified SkillScroller for professional skills with mobile optimization
 const ProfSkillScroller = ({ items }) => {
   return (
-    <div className="relative overflow-hidden py-2">
-      <div className="flex overflow-x-auto no-scrollbar">
+    <div className="relative overflow-hidden py-2 w-full">
+      <div className="flex overflow-x-auto no-scrollbar w-full">
         <div className="flex animate-scroll-slow-reverse">
           {items.map((item, index) => (
             <div 
               key={index}
               className="flex-none flex items-center justify-center"
             >
-              <div className="px-6 py-3 rounded-xl text-text-secondary">
+              <div className="px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl text-text-secondary text-xs sm:text-sm md:text-base whitespace-nowrap">
                 {item.label}
               </div>
             </div>
@@ -58,7 +58,7 @@ const ProfSkillScroller = ({ items }) => {
               key={`dup-${index}`} 
               className="flex-none flex items-center justify-center"
             >
-              <div className="px-6 py-3 rounded-xl text-text-secondary">
+              <div className="px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl text-text-secondary text-xs sm:text-sm md:text-base whitespace-nowrap">
                 {item.label}
               </div>
             </div>
@@ -85,7 +85,7 @@ const About = () => {
         { icon: <img src="/assets/icons/css.png" alt="CSS" className="h-10 w-10" /> },
         { icon: <img src="/assets/icons/r.png" alt="R" className="h-10 w-10" /> },
         { icon: <img src="/assets/icons/unity.png" alt="Unity" className="h-10 w-10" /> },
-        //{ icon: <img src="/assets/icons/flutter.png" alt="Flutter" className="h-10 w-10" /> },
+//{ icon: <img src="/assets/icons/flutter.png" alt="Flutter" className="h-10 w-10" /> },
         //{ icon: <img src="/assets/icons/dart.png" alt="Dart" className="h-10 w-10" /> },
         { icon: <img src="/assets/icons/androidstudio.png" alt="AndroidStudio" className="h-10 w-10" /> },
         { icon: <img src="/assets/icons/mysql.png" alt="Mysql" className="h-10 w-10" /> },
@@ -116,23 +116,33 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="min-h-screen flex items-center justify-center p-8">
-            <RevealWrapper delay={0.1} duration={0.6}>
-                <SpotlightCard className="card max-w-4xl mx-auto" spotlightColor="rgba(92, 169, 255, 0.15)">
-                    <h2 className="text-3xl font-bold mb-6 text-accent-light">About Me</h2>
+        <section id="about" className="min-h-screen flex items-center justify-center w-full p-3 sm:p-5 md:p-8">
+            <RevealWrapper delay={0.1} duration={0.6} className="w-full">
+                <SpotlightCard className="card max-w-full w-full sm:max-w-4xl mx-auto py-4 sm:py-5 md:py-6 px-3 sm:px-4 md:px-6" spotlightColor="rgba(92, 169, 255, 0.15)">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-accent-light">About Me</h2>
                     
                     <StaggeredReveal baseDelay={0.2} staggerDelay={0.1} duration={0.5}>
-                        <p className="text-text-secondary mb-4">
+                        <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
                             I'm a computer science enthusiast with a passion for creating intuitive, performant solutions that solve real-world problems.
                         </p>
                         
-                        <p className="text-text-secondary mb-4">
+                        <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
                             With interests spanning both technology and the finance/management sector, I bring a unique interdisciplinary perspective to projects. This diverse background allows me to bridge technical implementation with business objectives, creating solutions that are both technically sound and strategically aligned.
                         </p>
                         
-                        <TechSkillScroller items={technicalSkills} />
+                        <div className="overflow-hidden">
+                            {/* Mobile scroller container limits visible elements */}
+                            <div className="relative w-full overflow-hidden">
+                                <TechSkillScroller items={technicalSkills} />
+                            </div>
+                        </div>
                     
-                        <ProfSkillScroller items={professionalSkills} />
+                        <div className="overflow-hidden">
+                            {/* Mobile scroller container limits visible elements */}
+                            <div className="relative w-full overflow-hidden">
+                                <ProfSkillScroller items={professionalSkills} />
+                            </div>
+                        </div>
                     </StaggeredReveal>
                 </SpotlightCard>
             </RevealWrapper>
