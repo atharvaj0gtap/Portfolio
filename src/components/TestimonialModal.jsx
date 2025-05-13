@@ -2,7 +2,7 @@ import React from 'react';
 
 const TestimonialModal = ({ isOpen, testimonial, onClose }) => {
   if (!isOpen || !testimonial) return null;
-  
+
   return (
     <div className="testimonial-modal" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -12,7 +12,7 @@ const TestimonialModal = ({ isOpen, testimonial, onClose }) => {
           <div className="modal-image-container">
             <div 
               className="modal-image" 
-              style={{ 
+              style={{
                 backgroundColor: testimonial.color,
                 backgroundImage: `url(${testimonial.image})`
               }}
@@ -31,8 +31,28 @@ const TestimonialModal = ({ isOpen, testimonial, onClose }) => {
             </div>
             
             <div className="modal-actions">
-              <button className="action-button">View Case Study</button>
-              <button className="action-button secondary">Contact Reference</button>
+              {/* Only show these buttons if the links exist */}
+              {testimonial.caseStudyLink && (
+                <a 
+                  href={testimonial.caseStudyLink} 
+                  className="action-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Case Study
+                </a>
+              )}
+              
+              {testimonial.contactReference?.linkedin && (
+                <a 
+                  href={testimonial.contactReference.linkedin} 
+                  className="action-button secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Connect on LinkedIn
+                </a>
+              )}
             </div>
           </div>
         </div>

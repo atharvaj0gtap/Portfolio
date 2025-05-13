@@ -1,28 +1,44 @@
 export const testimonialData = [
   {
     id: 1,
-    name: "Alex Johnson",
-    role: "Senior Developer at TechCorp",
-    company: "TechCorp",
-    testimonial: "Atharva's attention to detail and problem-solving skills are exceptional. The solutions he developed streamlined our processes by 40%.",
-    color: "#8A7F8D" // Mercury
+    name: "Pankaj Jain",
+    role: "CEO",
+    company: "Getmax.ae",
+    testimonial: "I am writing to highly recommend Atharva Jagtap, who worked as a Software Engineer Intern at Getmax.ae. During his time, Atharva demonstrated exceptional technical proficiency, a strong work ethic, and a remarkable ability to collaborate effectively within our team. Beyond his technical expertise, Atharva consistently exhibited strong communication and leadership skills. He was able to clearly articulate his ideas, work closely with cross-functional teams, and ensure smooth project execution. His professionalism, combined with his eagerness to learn and adapt, makes him an invaluable asset to any organization. I am confident that Atharva will continue to excel in his future endeavors and strongly recommend him for any role that seeks a highly skilled, dedicated, and collaborative individual.",
+    shortTestimonial: "I am writing to highly recommend Atharva Jagtap, who worked as a Software Engineer Intern at Getmax.ae. During his time...",
+    color: "#8A7F8D", // Mercury
+    caseStudyLink: "/case-studies/getmax-ai-integration.pdf",
+    contactReference: {
+      linkedin: "https://www.linkedin.com/in/rightpankaj/"
+    }
   },
   {
     id: 2,
-    name: "Sarah Chen",
-    role: "Product Manager",
-    company: "InnovateX",
-    testimonial: "Working with Atharva was a game-changer for our project. His ability to translate complex requirements into elegant code made all the difference.",
-    color: "#F7DC6F" // Venus
+    name: "Siddharth Jain",
+    role: "Co-founder & CEO",
+    company: "NxtMeals",
+    testimonial: "I’ve had the privilege of working alongside Atharva Jagtap as a co-founder of NxtMeals, and I can confidently say that his technical expertise and problem-solving mindset have been instrumental in bringing our vision to life. From building our Wix website to developing an interactive prototype, Atharva has played a crucial role in translating our ideas into a tangible product that resonates with our users. His ability to navigate complex development challenges, quickly iterate on user feedback, and maintain a keen eye for design and functionality has significantly accelerated our progress. Beyond his technical skills, Atharva is a dedicated, detail-oriented, and resourceful founder who thrives in fast-paced, problem-solving environments. Whether it’s tackling unexpected roadblocks or optimizing workflows, his adaptability and perseverance ensure that our product continues to evolve.",
+    shortTestimonial: "I’ve had the privilege of working alongside Atharva Jagtap as a co-founder of NxtMeals, and I can confidently say that his technical expertise...",
+    color: "#F7DC6F", // Venus
+    caseStudyLink: "/case-studies/nxtmeals-app-development.pdf",
+    contactReference: {
+      linkedin: "https://www.linkedin.com/in/siddharthsj/"
+    }
   },
   {
     id: 3,
-    name: "Michael Rodriguez",
-    role: "CTO",
-    company: "StartupVision",
-    testimonial: "Atharva not only delivered on time but exceeded our expectations with additional optimizations we hadn't even considered.",
-    color: "#2E86C1" // Earth
-  },
+    name: "ABC",
+    role: "X",
+    company: "XYZ",
+    testimonial: "Work with Atharva and be the next one to give a testimonial!!",
+    shortTestimonial: "Work with Atharva and be the next one to give a testimonial!!",
+    color: "#2E86C1", // Earth
+    caseStudyLink: "",
+    contactReference: {
+      linkedin: ""
+    }
+  }
+
   // color: "#E74C3C" - Mars
   // color: "#D35400" - Jupiter
   // color: "#F9E79F" - Saturn
@@ -31,7 +47,6 @@ export const testimonialData = [
 
 // Add the sun message data
 export const sunData = {
-  message: "Welcome to my universe of code! I'm Atharva, a developer who believes in creating meaningful experiences that bring ideas to life.",
+  message: "I believe in consistency and discipline. I strive to become a little better in every aspect of my life every day.",
   title: "Atharva Jagtap",
-  subtitle: "Software Developer"
 };

@@ -125,38 +125,38 @@
 }
 
 .modal-quote {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  line-height: 1.4;
+  margin-bottom: 15px;
   position: relative;
 }
 
 .modal-author {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .author-name {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .author-title {
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: 0.8;
   margin-bottom: 3px;
 }
 
 .author-company {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0.7;
 }
 
 .modal-actions {
   display: flex;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .action-button {
@@ -233,17 +233,19 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
   .modal-grid {
     grid-template-columns: 1fr;
   }
 
   .testimonial-modal {
-    max-height: 350px;
+    max-height: none; /* Remove fixed height restriction */
+    overflow-y: auto; /* Allow scrolling for longer content */
+    padding: 10px;
   }
   
   .modal-image-container {
-    height: 150px;
+    height: 120px; /* Slightly smaller header image */
   }
   
   .modal-image::after {
@@ -251,7 +253,86 @@
   }
   
   .modal-text {
-    padding: 15px 10px;
+    padding: 15px 12px;
+    max-height: 60vh; /* Limit height but still allow content to display */
+    overflow-y: auto; /* Allow scrolling within text area */
+  }
+
+  /* New mobile-specific styles */
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-quote {
+    font-size: 0.9rem; /* Smaller font size */
+    line-height: 1.2;
+    max-height: none; /* Allow natural height */
+    overflow-y: auto; /* Allow scrolling for long quotes */
+    margin-bottom: 12px;
+  }
+
+  .modal-author {
+    margin-bottom: 10px;
+  }
+
+  .author-name {
+    font-size: 1rem; /* Smaller name size */
+    margin-bottom: 3px;
+  }
+
+  .author-title, .author-company {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+
+  .modal-actions {
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .action-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    flex: 1 0 auto; /* Allow buttons to grow */
+    min-width: 120px; /* Ensure buttons are large enough for touch */
+    text-align: center;
+  }
+
+  /* Close button positioning for mobile */
+  .close-button {
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+  }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+  .modal-text {
+    padding: 12px 10px;
+  }
+
+  .modal-quote {
+    font-size: 0.85rem;
+  }
+
+  .author-name {
+    font-size: 0.95rem;
+  }
+
+  .author-title, .author-company {
+    font-size: 0.75rem;
+  }
+
+  .action-button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-width: 100px;
   }
 }
 
