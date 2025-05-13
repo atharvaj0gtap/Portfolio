@@ -16,7 +16,13 @@ const darkenColor = (hex, percent) => {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-const ProjectFolder = ({ color = "#5C96FF", size = 1.5, onOpenComplete }) => {
+const ProjectFolder = ({ 
+  color = "#5C96FF", 
+  size = 2, 
+  onOpenComplete,
+  projectThumbnails = [],
+  folderLogo = null 
+}) => {
   const [open, setOpen] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [paperOffsets, setPaperOffsets] = useState(
@@ -82,8 +88,15 @@ const ProjectFolder = ({ color = "#5C96FF", size = 1.5, onOpenComplete }) => {
   return (
     <div className="folder-container" style={scaleStyle}>
       <div className={folderClassName} style={folderStyle} onClick={handleClick}>
+        {/* Logo positioned above the folder for better visibility */}
+        {folderLogo && (
+          <div className="folder-logo-container">
+            <img src={folderLogo} alt="Folder logo" className="folder-logo" />
+          </div>
+        )}
+        
         <div className="folder__back">
-          {[1, 2, 3].map((_, i) => (
+          {[0, 1, 2].map((i) => (
             <div
               key={i}
               className={`paper paper-${i + 1}`}
@@ -99,7 +112,13 @@ const ProjectFolder = ({ color = "#5C96FF", size = 1.5, onOpenComplete }) => {
               }
             >
               <div className="paper-content">
-                <span className="folder-label"></span>
+                {projectThumbnails[i] && (
+                  <img 
+                    src={projectThumbnails[i]} 
+                    alt={`Project ${i + 1}`} 
+                    className="paper-thumbnail"
+                  />
+                )}
               </div>
             </div>
           ))}

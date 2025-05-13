@@ -4,6 +4,7 @@ import StaggeredReveal from '../components/StaggeredReveal';
 import ProjectCard from '../components/ProjectCard';
 import ProjectFolder from '../components/ProjectFolder';
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
+import { image } from 'framer-motion/client';
 
 const Project = () => {
     const carouselRef = useRef(null);
@@ -28,37 +29,90 @@ const Project = () => {
       {
         id: 1,
         title: "Portfolio Website",
-        description: "A modern, responsive portfolio site built with React and Tailwind CSS featuring smooth animations and dark mode.",
-        technologies: ["React", "TailwindCSS", "GSAP"],
-        projectLink: "https://github.com/your-username/portfolio"
+        description: "A modern, responsive portfolio website with animations, interactive micro-UX, and 3D elements.",
+        technologies: ["React", "TailwindCSS", "GSAP", "Three.js"],
+        projectLink: "https://github.com/atharvaj0gtap/Portfolio",
+        image: "/assets/logos/JagtapWorksLogo.png"
       },
       {
         id: 2,
-        title: "Data Visualization Dashboard",
-        description: "Interactive dashboard for visualizing complex datasets with filtering capabilities and responsive design.",
-        technologies: ["D3.js", "TypeScript", "API Integration"],
-        projectLink: "https://github.com/your-username/data-dashboard"
+        title: "Insurance Policy Software",
+        description: "Web application designed for BFL Canada to automate and streamline the comparison of insurance policy documents using AI.",
+        technologies: ["Java", "React", "Node.js", "MySQL"],
+        projectLink: "https://github.com/COSC-499-W2024",
+        image: "/assets/icons/BFL.png"
       },
       {
         id: 3,
-        title: "E-commerce Platform",
-        description: "Full-featured e-commerce solution with product catalog, shopping cart, and secure payment processing.",
-        technologies: ["Next.js", "Stripe", "MongoDB"],
-        projectLink: "https://github.com/your-username/ecommerce"
+        title: "AI Trend Analysis",
+        description: "Analysis and visualization of the impact of artificial intelligence (AI) on jobs and industries, specifically employment trends.",
+        technologies: ["Pandas", "Matplotlib", "Numpy"],
+        projectLink: "https://github.com/atharvaj0gtap/AI-Trend-Analysis",
+        image: "/assets/icons/AI.png"
       },
       {
         id: 4,
-        title: "AI Assistant App",
-        description: "Mobile application powered by machine learning to assist users with daily tasks and information retrieval.",
-        technologies: ["React Native", "TensorFlow", "Node.js"],
-        projectLink: "https://github.com/your-username/ai-assistant"
+        title: "Jersey Number Recognition",
+        description: "Project to enhance an existing jersey number recognition pipeline using deep learning techniques.",
+        technologies: ["TensorFlow", "PyTorch", "Pandas", "OpenCV"],
+        projectLink: "https://github.com/MahmoudOsama97/jersey-number-pipeline_PlusPlus",
+        image: "/assets/icons/sys_arch.png"
       },
       {
         id: 5,
-        title: "Blockchain Explorer",
-        description: "Web application for browsing and analyzing blockchain transactions with intuitive visualizations.",
-        technologies: ["Ethereum", "Web3.js", "Vue"],
-        projectLink: "https://github.com/your-username/blockchain-explorer"
+        title: "Network Analysis of Wildfires",
+        description: "Study investigating how environmental and geographical factors influence wildfire clustering and causes in Alberta",
+        technologies: ["R", "DBSCAN", "K-Means", "ggplot2"],
+        projectLink: "https://github.com/atharvaj0gtap/Network-Science-Team-4",
+        image: "/assets/icons/NetworkAnalysis.png"
+      },
+      {
+        id: 6,
+        title: "HCI Research",
+        description: "A study investigating the performance of the Adaptive Bubble Cursor in a dynamic environment.",
+        technologies: ["Unity", "C#"],
+        projectLink: "https://github.com/atharvaj0gtap/COSC-441-Group-5",
+        image: "/assets/icons/HCI.jpg"
+      },
+      {
+        id: 7,
+        title: "E-Learning Platform",
+        description: "A platform designed to transform the traditional classroom experience into an interactive, AI-enhanced environment.",
+        technologies: ["React", "Bootstrap", "Express.js", "MongoDB"],
+        projectLink: "https://github.com/dabby04/TheLearningLayers",
+        image: "/assets/icons/LearningLayers.png"
+      },
+      {
+        id: 8,
+        title: "Shelter Finder App",
+        description: "An app that provides an interface to create and post listings of homes for people in need during wildfires.",
+        technologies: ["Android Studio", "Firebase", "Google Maps API"],
+        projectLink: "https://github.com/atharvaj0gtap/ShelterFinderApp",
+        image: "/assets/icons/ShelterFinder.png"
+      },
+      {
+        id: 9,
+        title: "eCommerce Website",
+        description: "This web development project involves constructing an online store similar to Amazon that sells products.",
+        technologies: ["JSP", "JDBC", "SQL", "HTML", "CSS"],
+        projectLink: "https://github.com/atharvaj0gtap/Web-development",
+        image: "/assets/icons/SwiftShopper.png"
+      },
+      {
+        id: 10,
+        title: "World Happiness Index Analysis",
+        description: "A project to examine trends in happiness over a timeframe and evaluate the economic impacts on the happiness scale.",
+        technologies: ["Tableau", "Pandas", "Seaborn", "Matplotlib"],
+        projectLink: "https://github.com/ubco-W2022T1-cosc301/project-group41",
+        image: "/assets/icons/WorldHappiness.png"
+      },
+      {
+        id: 11,
+        title: "Car Rental",
+        description: "A project that allows users to rent cars and manage their bookings, including features like searching for available cars.",
+        technologies: ["Python", "MySQL"],
+        projectLink: "https://www.linkedin.com/in/atharvahjagtap/details/featured/1635474256397/single-media-viewer/?profileId=ACoAADikhdYBSWR6ixUaUSqhGdXtlhI-uG3wOKs",
+        image: "/assets/icons/CarRental.png"
       }
     ];
 
@@ -168,6 +222,12 @@ const Project = () => {
       }, 200);
     };
 
+    // Extract thumbnails from projects array (first 3 only)
+    const projectThumbnails = projects
+    .slice(1, 3) // Take only first 2 projects after portfolio
+    .map(project => project.image) // Extract image paths
+    .concat('/assets/logos/JagtapWorksLogo.png'); // Add portfolio image at the end
+
     return (
       <section id="projects" className="min-h-screen p-8">
         {/* Title reveals separately */}
@@ -182,6 +242,8 @@ const Project = () => {
               color="#5C96FF" 
               size={2} 
               onOpenComplete={handleFolderOpen} 
+              projectThumbnails={projectThumbnails}
+              folderLogo="/assets/logos/IconLogo.png"
             />
           </div>
         ) : (
@@ -219,7 +281,7 @@ const Project = () => {
                             description={project.description}
                             technologies={project.technologies}
                             projectLink={project.projectLink}
-                            // image={project.image} - Add this when you have images
+                            image={project.image}
                             previewText={`${project.title} Preview`}
                           />
                         </div>
