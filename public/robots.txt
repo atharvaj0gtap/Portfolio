@@ -1,0 +1,6 @@
+# Allow all bots complete access
+User-agent: *
+Allow: /
+
+# Preferred host—for Google to consolidate indexing
+Host: jagtapworks.com
