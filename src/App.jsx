@@ -7,6 +7,7 @@ import About from './sections/About';
 import Testimonials from './sections/Testimonials/index';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
       <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
         <Footer />
       </RevealWrapper>
+
+      <ScrollToTop />
     </div>
   );
 }

@@ -1,0 +1,60 @@
+/* Hide the button by default on all screens */
+.scroll-to-top-btn {
+  display: none;
+}
+
+/* Only show on mobile devices */
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: hsla(222, 25%, 14%, 0.9); /* surface-overlay with opacity */
+    color: hsl(220, 15%, 90%); /* text-primary */
+    border: 1px solid hsla(220, 60%, 55%, 0.5); /* accent-main with opacity */
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1); /* elevation shadow */
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+  }
+
+  .scroll-to-top-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, hsla(220, 60%, 55%, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .scroll-to-top-btn:hover,
+  .scroll-to-top-btn:focus {
+    background-color: hsla(222, 25%, 17%, 0.95); /* surface-highest */
+    transform: translateY(-3px);
+    border-color: hsl(220, 60%, 55%); /* accent-main solid */
+    color: hsl(220, 60%, 65%); /* accent-light */
+  }
+  
+  .scroll-to-top-btn:hover::before,
+  .scroll-to-top-btn:focus::before {
+    opacity: 1;
+  }
+
+  .scroll-to-top-btn:active {
+    transform: translateY(-1px);
+  }
+}

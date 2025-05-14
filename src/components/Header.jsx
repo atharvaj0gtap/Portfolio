@@ -8,6 +8,12 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
+          // Close mobile menu when scrolling
+          if (isOpen) {
+            setisOpen(false);
+          }
+          
+          // Handle header visibility
           if (window.scrollY > lastScrollY) {
             setIsVisible(false); // Hide on scroll down
           } else {
@@ -18,7 +24,7 @@ const Header = () => {
     
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, [lastScrollY, isOpen]); // Added isOpen to dependency array
     
     // Add this function to close the menu when a link is clicked
     const handleLinkClick = () => {
@@ -31,7 +37,7 @@ const Header = () => {
           }`}>
             <div className='flex justify-between mx-auto h-20 items-center px-8'>
                 {/* Logo */}
-                <h1 className='text-3xl font-bold bg-gradient-to-r from-accent-light to-accent-main bg-clip-text text-transparent'>JagtapWorks</h1>
+                <h1 className='text-[1.875rem] font-bold bg-gradient-to-r from-accent-light to-accent-main bg-clip-text text-transparent'>JagtapWorks</h1>
                 
                 {/* Hamburger menu */}
                 <div className='md:hidden text-3xl text-accent-main'>
