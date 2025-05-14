@@ -4,3 +4,6 @@ Allow: /
 
 # Preferred host—for Google to consolidate indexing
 Host: jagtapworks.com
+
+# Sitemap location
+Sitemap: https://jagtapworks.com/sitemap.xml
