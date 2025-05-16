@@ -16,6 +16,8 @@ const StarryBackground = ({
   const scaleMapperRef = useRef(null);
   const alphaMapperRef = useRef(null);
   const timeRef = useRef(0);
+  const animationFrameRef = useRef(null);  // Add reference to track animation frame
+  const starsDataRef = useRef(null);  // Store stars data separately for persistence
   
   useEffect(() => {
     // Get the canvas context
@@ -24,7 +26,11 @@ const StarryBackground = ({
     const LOAD = () => {
         // Calculate viewport min dimension and setup references
       vminRef.current = Math.min(window.innerHeight, window.innerWidth);
-      const STAR_COUNT = Math.floor(vminRef.current * densityRatio);
+      
+      // Mobile optimization: reduce star density on smaller screens
+      const isMobile = window.innerWidth < 768;
+      const mobileRatio = isMobile ? 0.7 : 1; // 30% fewer stars on mobile
+      const STAR_COUNT = Math.floor(vminRef.current * densityRatio * mobileRatio);
       
       // Create mapping functions for scale and alpha based on distance
       scaleMapperRef.current = gsap.utils.mapRange(
@@ -44,19 +50,24 @@ const StarryBackground = ({
       canvasRef.current.width = window.innerWidth;
       canvasRef.current.height = window.innerHeight;
       
-      // Generate stars with random positions, sizes, opacities AND twinkling properties
-      starsRef.current = new Array(STAR_COUNT).fill().map(() => ({
-        x: gsap.utils.random(0, window.innerWidth, 1),
-        y: gsap.utils.random(0, window.innerHeight, 1),
-        size: gsap.utils.random(1, sizeLimit, 1),
-        scale: 1,
-        alpha: gsap.utils.random(0.1, defaultAlpha, 0.1),
-        baseBrightness: gsap.utils.random(0.1, defaultAlpha, 0.1),
-        twinkleSpeed: gsap.utils.random(2, 3, 0.5), // Speed of twinkling
-        twinkleOffset: gsap.utils.random(0, Math.PI * 2, 0.01), // Random phase offset
-        twinkleMagnitude: gsap.utils.random(0.3, 0.7, 0.01) // Magnitude
-      }));
-          };
+      // Preserve star data if already exists (for mobile persistence)
+      if (!starsDataRef.current || starsDataRef.current.length !== STAR_COUNT) {
+        starsDataRef.current = new Array(STAR_COUNT).fill().map(() => ({
+          x: gsap.utils.random(0, window.innerWidth, 1),
+          y: gsap.utils.random(0, window.innerHeight, 1),
+          size: gsap.utils.random(1, sizeLimit, 1),
+          scale: 1,
+          alpha: gsap.utils.random(0.1, defaultAlpha, 0.1),
+          baseBrightness: gsap.utils.random(0.1, defaultAlpha, 0.1),
+          twinkleSpeed: gsap.utils.random(2, 3, 0.5), 
+          twinkleOffset: gsap.utils.random(0, Math.PI * 2, 0.01),
+          twinkleMagnitude: gsap.utils.random(0.3, 0.7, 0.01)
+        }));
+      }
+      
+      // Always use the preserved star data
+      starsRef.current = starsDataRef.current;
+    };
     
     // Function to render all stars
     const RENDER = () => {
@@ -148,6 +159,7 @@ const StarryBackground = ({
     const animate = () => {
       RENDER();
       animationFrameId = requestAnimationFrame(animate);
+      animationFrameRef.current = animationFrameId; // Store ID in ref for persistence
     };
     animate();
     
@@ -156,11 +168,25 @@ const StarryBackground = ({
     window.addEventListener('pointermove', UPDATE);
     window.addEventListener('pointerleave', EXIT);
     
+    // Mobile-specific: handle visibility changes to prevent refresh on section change
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+      } else {
+        animate(); // Resume animation when visible again
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
     // Cleanup on unmount
     return () => {
       window.removeEventListener('resize', LOAD);
       window.removeEventListener('pointermove', UPDATE);
       window.removeEventListener('pointerleave', EXIT);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, [densityRatio, sizeLimit, defaultAlpha, scaleLimit, proximityRatio]);
