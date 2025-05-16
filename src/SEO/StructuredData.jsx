@@ -38,7 +38,7 @@ const StructuredData = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Jagtap Works Portfolio",
+    "name": "JagtapWorks Portfolio",
     "url": "https://jagtapworks.com",
     "description": "Professional portfolio showcasing projects and expertise",
     "potentialAction": {

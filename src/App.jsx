@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Jagtap Works | Portfolio</title>
+        <title>JagtapWorks | Portfolio</title>
         <meta name="description" content="Portfolio of Atharva Jagtap, showcasing skills and projects in software engineering and data analytics." />
         {/* You can dynamically update meta tags based on active section */}
       </Helmet>
