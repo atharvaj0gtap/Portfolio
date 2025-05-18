@@ -49,7 +49,7 @@ const PlanetarySystem = ({
       // Disable all controls on mobile
       controls.enabled = false;
       // Set a fixed, optimized camera position for mobile
-      camera.position.set(0, 25, 35); // Slightly adjusted for better mobile view
+      camera.position.set(0, 35, 45); // Slightly adjusted for better mobile view
       camera.lookAt(0, 0, 0);
     } else {
       // Keep existing control configuration for laptop/desktop
@@ -541,7 +541,7 @@ const PlanetarySystem = ({
         // Update controls if device type changes
         if (newIsMobile) {
           controls.enabled = false;
-          camera.position.set(0, 25, 35);
+          camera.position.set(0, 35, 45);
           camera.lookAt(0, 0, 0);
         } else {
           controls.enabled = true;
