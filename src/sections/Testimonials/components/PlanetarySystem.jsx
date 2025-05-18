@@ -20,6 +20,9 @@ const PlanetarySystem = ({
     const width = container.clientWidth;
     const height = container.clientHeight;
     
+    // Check if on mobile device
+    const isMobile = window.innerWidth < 768;
+    
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -40,11 +43,22 @@ const PlanetarySystem = ({
     
     // Controls
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.autoRotate = false;
+    
+    // Configure controls differently based on device
+    if (isMobile) {
+      // Disable all controls on mobile
+      controls.enabled = false;
+      // Set a fixed, optimized camera position for mobile
+      camera.position.set(0, 25, 35); // Slightly adjusted for better mobile view
+      camera.lookAt(0, 0, 0);
+    } else {
+      // Keep existing control configuration for laptop/desktop
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enableZoom = false;
+      controls.enablePan = false;
+      controls.autoRotate = false;
+    }
     
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -501,7 +515,11 @@ const PlanetarySystem = ({
       
       updateFocusElements();
       
-      controls.update();
+      // Only update controls if not on mobile
+      if (!isMobile) {
+        controls.update();
+      }
+      
       renderer.render(scene, camera);
     };
     
@@ -516,6 +534,23 @@ const PlanetarySystem = ({
       camera.updateProjectionMatrix();
       
       renderer.setSize(newWidth, newHeight);
+      
+      // Update isMobile check on resize
+      const newIsMobile = window.innerWidth < 768;
+      if (newIsMobile !== isMobile) {
+        // Update controls if device type changes
+        if (newIsMobile) {
+          controls.enabled = false;
+          camera.position.set(0, 25, 35);
+          camera.lookAt(0, 0, 0);
+        } else {
+          controls.enabled = true;
+          controls.enableDamping = true;
+          controls.enableZoom = false;
+          controls.enablePan = false;
+          controls.autoRotate = false;
+        }
+      }
     };
     
     window.addEventListener('resize', handleResize);
