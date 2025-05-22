@@ -114,6 +114,7 @@ const About = () => {
         { label: "Communication" },
         { label: "Story Telling" },
         { label: "Financial Analysis" },
+        { label: "Business Law"}
     ];
 
     return (

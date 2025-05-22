@@ -49,8 +49,8 @@ const Header = () => {
                 {/* Desktop menu */}
                 <ul className='hidden md:flex gap-8 text-text-secondary'>
                     <li><a href="#home" className="hover:text-accent-main transition-colors">Home</a></li>
-                    <li><a href="#about" className="hover:text-accent-main transition-colors">About</a></li>
                     <li><a href="#projects" className="hover:text-accent-main transition-colors">Projects</a></li>
+                    <li><a href="#about" className="hover:text-accent-main transition-colors">About</a></li>
                     <li><a href="#testimonials" className="hover:text-accent-main transition-colors">Testimonials</a></li>
                     <li><a href="#contact" className="hover:text-accent-main transition-colors">Contact</a></li>
                 </ul>
@@ -61,8 +61,8 @@ const Header = () => {
                 <div className="animate-dropdown origin-top transform fixed inset-x-0 top-20 bg-surface-overlay border-b border-border-subtle">
                     <ul className='flex-col md:hidden text-center py-4'>
                         <li className='py-3'><a href="#home" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">Home</a></li>
-                        <li className='py-3'><a href="#about" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">About</a></li>
                         <li className='py-3'><a href="#projects" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">Projects</a></li>
+                        <li className='py-3'><a href="#about" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">About</a></li>
                         <li className='py-3'><a href="#testimonials" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">Testimonials</a></li>
                         <li className='py-3'><a href="#contact" onClick={handleLinkClick} className="text-text-secondary hover:text-accent-main transition-colors">Contact</a></li>
                     </ul>

@@ -12,6 +12,9 @@ const Footer = () => {
                         <li>
                             <a href="#resume" className="hover:text-accent-main me-4 md:me-6">Resume</a>
                         </li>
+                        <li>
+                            <a href="#certifications" className="hover:text-accent-main me-4 md:me-6">Certifications</a>
+                        </li>
                     </ul>
                 </div>
                 <hr className="my-6 border-border-subtle sm:mx-auto lg:my-8" />

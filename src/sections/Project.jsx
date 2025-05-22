@@ -30,6 +30,11 @@ const Project = () => {
         id: 1,
         title: "Portfolio Website",
         description: "A modern, responsive portfolio website with animations, interactive micro-UX, and 3D elements.",
+        longDescription: `▪	Developed a responsive portfolio with React (Vite) and Tailwind CSS on Cloudflare Pages, implementing code-splitting, lazy-loading, image compression, and HTTP/3 + Brotli, achieving 90+ Lighthouse scores in Performance, Accessibility & SEO and reducing initial load times by 40%.
+        
+        ▪	Integrated GSAP ScrollTrigger and Three.js for smooth, scroll-driven animations and lightweight 3D scenes, enhancing interactive micro-UX without performance degradation and boosting visitor engagement.
+        
+        ▪	Architected a modular component library (sections, cards, navigation, hooks) and end-to-end CI/CD pipeline (Git + DNS + Cloudflare Pages + automated SSL/TLS), cutting development time by 40% and ensuring 100% uptime under Full-Strict SSL.`,
         technologies: ["React", "TailwindCSS", "GSAP", "Three.js"],
         projectLink: "https://github.com/atharvaj0gtap/Portfolio",
         image: "/assets/logos/JagtapWorksLogo.png"
@@ -38,6 +43,11 @@ const Project = () => {
         id: 2,
         title: "Insurance Policy Software",
         description: "Web application designed for BFL Canada to automate and streamline the comparison of insurance policy documents using AI.",
+        longDescription: `▪	Developed a React/Node.js/Express web application with a MySQL backend to automate policy creation and comparison, reducing manual review time by 80% for 100+ monthly documents.
+        
+        ▪	Architected an AI-driven discrepancy detection pipeline, leveraging GROBID for text extraction and Levenstein-distance algorithms via AI APIs to achieve 90% accuracy in identifying policy changes.
+        
+        ▪	Conducted end-to-end testing with Playwright (UI) and Jest (API), boosting test coverage to 60% and preventing production defects prior to deployment.`,
         technologies: ["Java", "React", "Node.js", "MySQL"],
         projectLink: "https://github.com/COSC-499-W2024",
         image: "/assets/icons/BFL.png"
@@ -46,6 +56,11 @@ const Project = () => {
         id: 3,
         title: "AI Trend Analysis",
         description: "Analysis and visualization of the impact of artificial intelligence (AI) on jobs and industries, specifically employment trends.",
+        longDescription: `▪	Created a Python data pipeline (Pandas, NumPy) to clean and analyze records from the AI-Powered Job Market Insights dataset, covering 500 job roles across 50+ countries.
+        
+        ▪	Designed and implemented 10+ visualizations (Matplotlib, Seaborn) and boosted stakeholder comprehension of global AI-impact trends.
+        
+        ▪	Authored an analytical report with data-driven policy recommendations (e.g., targeted reskilling programs projected to mitigate 20% of forecasted job losses) and presented findings to academic audiences.`,
         technologies: ["Pandas", "Matplotlib", "Numpy"],
         projectLink: "https://github.com/atharvaj0gtap/AI-Trend-Analysis",
         image: "/assets/icons/AI.png"
@@ -54,6 +69,7 @@ const Project = () => {
         id: 4,
         title: "Jersey Number Recognition",
         description: "Project to enhance an existing jersey number recognition pipeline using deep learning techniques.",
+        longDescription: `▪	Revamped the legibility classifier by integrating diverse data augmentations (random noise, real-world distortions) and a MixUp label-blending strategy with soft targets, improving classifier accuracy by 18% and reducing illegible-frame false positives by 25%.`,
         technologies: ["TensorFlow", "PyTorch", "Pandas", "OpenCV"],
         projectLink: "https://github.com/MahmoudOsama97/jersey-number-pipeline_PlusPlus",
         image: "/assets/icons/sys_arch.png"
@@ -62,6 +78,11 @@ const Project = () => {
         id: 5,
         title: "Network Analysis of Wildfires",
         description: "Study investigating how environmental and geographical factors influence wildfire clustering and causes in Alberta",
+        longDescription: `▪	Utilized advanced network analyses in R, applying Louvain, DBSCAN, and K-Means algorithms to cluster wildfire events, identifying 69 distinct communities and revealing that major fires act as hubs connecting 25% of smaller clusters.
+        
+        ▪	Designed geospatial visualizations and statistical models that uncovered a 70% correlation between peak daily temperatures and wildfire size, informing stakeholder risk-assessment frameworks.
+        
+        ▪	Authored and published a GitHub-hosted research paper, “Network Analysis of Alberta Wildfires: Understanding Clustering and Root Causes,” driving peer collaboration and shaping future mitigation and monitoring strategies.`,
         technologies: ["R", "DBSCAN", "K-Means", "ggplot2"],
         projectLink: "https://github.com/atharvaj0gtap/Network-Science-Team-4",
         image: "/assets/icons/NetworkAnalysis.png"
@@ -70,6 +91,11 @@ const Project = () => {
         id: 6,
         title: "HCI Research",
         description: "A study investigating the performance of the Adaptive Bubble Cursor in a dynamic environment.",
+        longDescription: `▪	Engineered an Adaptive Bubble Cursor using Unity 2D and C#, featuring dynamic resizing, context-aware adaptability, and gamified feedback cues to enhance target selection efficiency in dense and dynamic environments.
+        
+        ▪	Led a controlled user study with 20 participants across four dynamic task scenarios, reducing selection error rates by 47% and improving target acquisition time by 12% compared to a standard Point Cursor.
+        
+        ▪	Wrote a research paper titled, “Exploring The Adaptive Bubble Cursor In Gamified Environments”, applying T-tests and ANOVA to validate statistically significant gains in speed, accuracy, and user engagement (p < .01).`,
         technologies: ["Unity", "C#"],
         projectLink: "https://github.com/atharvaj0gtap/COSC-441-Group-5",
         image: "/assets/icons/HCI.jpg"
@@ -78,6 +104,11 @@ const Project = () => {
         id: 7,
         title: "E-Learning Platform",
         description: "A platform designed to transform the traditional classroom experience into an interactive, AI-enhanced environment.",
+        longDescription: `▪	Facilitated agile sprint planning for a 5-person team across 8 two-week sprints, defining design requirements and prioritizing features, delivering 95% of MVP scope on schedule and boosting dev velocity by 30%.
+        
+        ▪	Built a React/HTML/CSS frontend with course enrollment, assignment submission, and profile management modules, increasing user engagement.
+        
+        ▪	Engineered RESTful APIs in Node.js/Express with a MongoDB datastore, optimizing data retrieval and update processes for student, teacher, and course information.`,
         technologies: ["React", "Bootstrap", "Express.js", "MongoDB"],
         projectLink: "https://github.com/dabby04/TheLearningLayers",
         image: "/assets/icons/LearningLayers.png"
@@ -86,6 +117,9 @@ const Project = () => {
         id: 8,
         title: "Shelter Finder App",
         description: "An app that provides an interface to create and post listings of homes for people in need during wildfires.",
+        longDescription: `▪	Pioneered a Java/Android Studio mobile application listing emergency shelters across wildfire-prone regions, reducing average shelter-finding time by 1.2 minutes per user in simulated disaster drills.
+        
+        ▪	Integrated Google Maps API for real-time geolocation and optimized routing, boosting navigation accuracy by 95% and accelerating user response in critical relief scenarios.`,
         technologies: ["Android Studio", "Firebase", "Google Maps API"],
         projectLink: "https://github.com/atharvaj0gtap/ShelterFinderApp",
         image: "/assets/icons/ShelterFinder.png"
@@ -94,6 +128,9 @@ const Project = () => {
         id: 9,
         title: "eCommerce Website",
         description: "This web development project involves constructing an online store similar to Amazon that sells products.",
+        longDescription: `▪	Developed a Java-based backend with UML-modeled database schema and embedded SQL queries, streamlining order processing and reducing inventory discrepancies by 25%.
+        
+        ▪	Constructed a Java/HTML/CSS frontend following UX best practices, introducing real-time order status and one-click checkout.`,
         technologies: ["JSP", "JDBC", "SQL", "HTML", "CSS"],
         projectLink: "https://github.com/atharvaj0gtap/Web-development",
         image: "/assets/icons/SwiftShopper.png"
@@ -102,17 +139,14 @@ const Project = () => {
         id: 10,
         title: "World Happiness Index Analysis",
         description: "A project to examine trends in happiness over a timeframe and evaluate the economic impacts on the happiness scale.",
+        longDescription: `▪	Led a 3-people research project conducting data analysis on decades of data from 150+ countries from the World Happiness Index, employing Python collections including Pandas, NumPy, Matplotlib, and Seaborn.
+        
+        ▪	Conducted multivariate regression and cluster analyses to identify the top 5 determinants of global happiness, GDP per capita, social support, life expectancy, freedom, and generosity explaining 65% of score variance.
+        
+        ▪	Designed an interactive Tableau dashboard featuring a world map, time-series plots, and drill-down filters, boosting stakeholder engagement.`,
         technologies: ["Tableau", "Pandas", "Seaborn", "Matplotlib"],
         projectLink: "https://github.com/ubco-W2022T1-cosc301/project-group41",
         image: "/assets/icons/WorldHappiness.png"
-      },
-      {
-        id: 11,
-        title: "Car Rental",
-        description: "A project that allows users to rent cars and manage their bookings, including features like searching for available cars.",
-        technologies: ["Python", "MySQL"],
-        projectLink: "https://www.linkedin.com/in/atharvahjagtap/details/featured/1635474256397/single-media-viewer/?profileId=ACoAADikhdYBSWR6ixUaUSqhGdXtlhI-uG3wOKs",
-        image: "/assets/icons/CarRental.png"
       }
     ];
 
@@ -230,7 +264,8 @@ const Project = () => {
 
     return (
       <section id="projects" className="min-h-screen p-8">
-        {/* Title reveals separately */}
+        <div className='mt-40 md:mt-0'>
+          {/* Title reveals separately */}
         <RevealWrapper delay={0.1} duration={0.6}>
           <h2 className="text-3xl font-bold mb-12 text-accent-light text-center">Projects</h2>
         </RevealWrapper>
@@ -279,6 +314,7 @@ const Project = () => {
                           <ProjectCard 
                             title={project.title}
                             description={project.description}
+                            longDescription={project.longDescription}
                             technologies={project.technologies}
                             projectLink={project.projectLink}
                             image={project.image}
@@ -310,6 +346,7 @@ const Project = () => {
             )}
           </div>
         )}
+        </div>
       </section>
     );
 };

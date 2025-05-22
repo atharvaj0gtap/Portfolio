@@ -1,5 +1,6 @@
 import React from 'react';
 import SpotlightCard from './SpotlightCard';
+import { EventEmitter } from '../App'; // Import EventEmitter
 
 /**
  * ProjectCard component for displaying individual project information
@@ -20,8 +21,26 @@ const ProjectCard = ({
   previewText = "Project Preview",
   technologies = ["React", "TailwindCSS"],
   projectLink = "#",
+  longDescription = null,
+  demoLink = null,
   style = {} // Add the style prop with default empty object
 }) => {
+  const handleViewClick = (e) => {
+    e.preventDefault();
+    
+    // Emit event to open project modal with project data
+    EventEmitter.dispatch('openProjectModal', {
+      title,
+      description,
+      longDescription: longDescription || description,
+      image,
+      previewText,
+      technologies,
+      projectLink,
+      demoLink
+    });
+  };
+
   return (
     <SpotlightCard 
       className="card group hover:border-accent-main/50 transition-colors" 
@@ -58,11 +77,12 @@ const ProjectCard = ({
       
       <a 
         href={projectLink} 
+        onClick={handleViewClick}
         className="text-accent-main hover:text-accent-light inline-flex items-center transition-colors"
         target="_blank"
         rel="noopener noreferrer"
       >
-        View Project 
+        View Details 
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>

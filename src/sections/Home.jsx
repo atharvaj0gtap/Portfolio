@@ -63,7 +63,7 @@ const Home = () => {
                 </div>
                 
                 <div className={`transition-all duration-900 delay-300 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-                    <RocketButton href="#about" text="Discover More" />
+                    <RocketButton href="#projects" text="Discover More" />
                 </div>
             </div>
         </section>

@@ -1,0 +1,220 @@
+.certifications-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.certifications-modal {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: hsla(222, 25%, 14%, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  outline: none;
+}
+
+.certifications-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background: hsla(222, 25%, 14%, 0.98);
+  z-index: 5;
+}
+
+.cert-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: hsl(220, 15%, 90%);
+  letter-spacing: -0.02em;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: hsl(220, 15%, 70%);
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: hsl(220, 60%, 65%);
+}
+
+.close-button:focus-visible {
+  outline: 2px solid hsl(220, 60%, 55%);
+  outline-offset: 2px;
+}
+
+.certifications-list {
+  padding: 16px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.certification-item {
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.certification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cert-logo {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.cert-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.cert-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-details h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: hsl(220, 15%, 90%);
+}
+
+.cert-issuer {
+  margin: 0 0 8px 0;
+  color: hsl(220, 60%, 65%);
+  font-size: 0.95rem;
+}
+
+.cert-dates {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  color: hsl(220, 15%, 70%);
+}
+
+.verify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: hsl(220, 60%, 65%);
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: rgba(100, 122, 190, 0.1);
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.verify-link:hover {
+  background: rgba(100, 122, 190, 0.2);
+  color: hsl(220, 60%, 75%);
+}
+
+.verify-link:focus-visible {
+  outline: 2px solid hsl(220, 60%, 55%);
+  outline-offset: 2px;
+}
+
+/* Animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .certification-item {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .cert-logo {
+    width: 60px;
+    height: 60px;
+    align-self: flex-start;
+  }
+  
+  .certifications-list {
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .cert-header {
+    padding: 16px;
+  }
+  
+  .cert-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small Mobile styles */
+@media (max-width: 480px) {
+  .cert-details h3 {
+    font-size: 1.1rem;
+  }
+  
+  .certifications-modal-overlay {
+    padding: 8px;
+  }
+}
