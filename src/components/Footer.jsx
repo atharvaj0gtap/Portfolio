@@ -10,7 +10,7 @@ const Footer = () => {
                     </a>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-text-secondary sm:mb-0">
                         <li>
-                            <a href="#resume" className="hover:text-accent-main me-4 md:me-6">Resume</a>
+                            <a href="/assets/certifications/AtharvaJagtap_Resume.pdf" download className="hover:text-accent-main me-4 md:me-6">Resume</a>
                         </li>
                         <li>
                             <a href="#certifications" className="hover:text-accent-main me-4 md:me-6">Certifications</a>
