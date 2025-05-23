@@ -30,8 +30,8 @@ export const testimonialData = [
     name: "ABC",
     role: "X",
     company: "XYZ",
-    testimonial: "Work with Atharva and be the next one to give a testimonial!!",
-    shortTestimonial: "Work with Atharva and be the next one to give a testimonial!!",
+    testimonial: "Work with me and be the next one to give a testimonial!!",
+    shortTestimonial: "Work with me and be the next one to give a testimonial!!",
     color: "#2E86C1", // Earth
     caseStudyLink: "",
     contactReference: {
@@ -47,6 +47,6 @@ export const testimonialData = [
 
 // Add the sun message data
 export const sunData = {
-  message: "I believe in consistency and discipline. I strive to become a little better in every aspect of my life every day.",
+  message: "Discover how I’ve made a difference through the words of those I’ve worked with.",
   title: "Atharva Jagtap",
 };

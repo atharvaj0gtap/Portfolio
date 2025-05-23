@@ -111,6 +111,8 @@ const About = () => {
         { label: "Project Management" },
         { label: "Agile Methodologies" },
         { label: "Team Leadership" },
+        { label: "Trust" },
+        { label: "Empathy" },
         { label: "Communication" },
         { label: "Story Telling" },
         { label: "Financial Analysis" },
@@ -125,11 +127,11 @@ const About = () => {
                     
                     <StaggeredReveal baseDelay={0.2} staggerDelay={0.1} duration={0.5}>
                         <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
-                            I'm a computer science enthusiast with a passion for creating intuitive, performant solutions that solve real-world problems.
+                            I am a dynamic engineer who blends deep Computer Science expertise with an intuitive grasp of Management & Finance, uniquely positioned to transform complex challenges into innovative, actionable solutions.
                         </p>
                         
                         <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
-                            With interests spanning both technology and the finance/management sector, I bring a unique interdisciplinary perspective to projects. This diverse background allows me to bridge technical implementation with business objectives, creating solutions that are both technically sound and strategically aligned.
+                            My rare synergy of technical mastery and human insight fostering trust, empathy, and adaptive communication enables me to bridge gaps few others can. I thrive on translating ambitious ideas into real-world impact, especially within fast-paced, high-growth environments.
                         </p>
                         
                         <div className="overflow-hidden">
