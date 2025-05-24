@@ -56,7 +56,7 @@ const TestimonialBubble = ({ testimonial, isSunMessage, onDismiss }) => {
   // Calculate opacity based on swipe distance (mobile only)
   const mobileStyles = isMobile ? {
     opacity: Math.max(0, 1 - Math.abs(swipePosition) / 200),
-    transition: isSwiping ? 'none' : 'transform 0.3s ease, opacity 0.3s ease'
+    transition: isSwiping ? 'none' : 'transform 0.6s ease, opacity 0.5s ease'
   } : {};
 
   return (
