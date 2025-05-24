@@ -28,6 +28,9 @@ const Testimonials = () => {
           <TestimonialBubble 
             testimonial={activeTestimonial}
             isSunMessage={isSunMessage}
+            onDismiss={() => {
+              setActiveTestimonial(null);
+            }}
           />
         )}
       </div>
