@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   min-height: 500px;
-  touch-action: none;
+  touch-action: pan-y;  /* Allow vertical scrolling but capture other gestures */
   border-radius: 10px;
   overflow: hidden;
   backdrop-filter: blur(8px);
