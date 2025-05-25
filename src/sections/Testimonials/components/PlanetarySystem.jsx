@@ -305,9 +305,6 @@ const PlanetarySystem = ({
     
     // Add touch events for mobile users
     const handleTouchStart = (event) => {
-      // Prevent default to avoid scrolling issues
-      event.preventDefault();
-      
       // Convert touch to mouse position
       const touch = event.touches[0];
       const rect = renderer.domElement.getBoundingClientRect();
@@ -316,8 +313,16 @@ const PlanetarySystem = ({
       
       raycaster.setFromCamera(mouse, camera);
       
-      // Check for sun intersection
+      // Check for sun or planet intersections
       const sunIntersects = raycaster.intersectObject(sun);
+      const planetIntersects = raycaster.intersectObjects(planets);
+      
+      // Only prevent default if touching a planet or the sun
+      if (sunIntersects.length > 0 || planetIntersects.length > 0) {
+        event.preventDefault();
+      }
+      
+      // Check for sun intersection
       if (sunIntersects.length > 0) {
         sun.scale.set(1.3, 1.3, 1.3);
         renderer.domElement.dataset.touchedElementId = 'sun';
