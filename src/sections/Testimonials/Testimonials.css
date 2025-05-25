@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   min-height: 500px;
-  touch-action: pan-y;  /* Allow vertical scrolling but capture other gestures */
+  touch-action: pan-y; 
   border-radius: 10px;
   overflow: hidden;
   backdrop-filter: blur(8px);
@@ -383,4 +383,8 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(92, 150, 255, 0.8);
   border-radius: 50%;
+}
+
+canvas[data-engine="three.js r176"] {
+  touch-action: pan-y !important;
 }
