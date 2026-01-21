@@ -155,57 +155,41 @@ const Project = () => {
       return isMobile ? 1 : 3;
     };
     
-    // Handle navigation with looping
-    const goToNextPage = () => {
+    // Calculate the maximum scrollable index (accounts for visible projects)
+    const getMaxScrollIndex = () => {
       const projectsPerPage = getProjectsPerPage();
-      const maxPage = Math.ceil(projects.length / projectsPerPage) - 1;
+      return Math.max(0, projects.length - projectsPerPage);
+    };
+    
+    // Handle navigation - scroll one project at a time
+    const goToNextPage = () => {
+      const maxIndex = getMaxScrollIndex();
       
-      // Loop to first page when at the end
-      const nextPage = currentPage === maxPage ? 0 : currentPage + 1;
-      setCurrentPage(nextPage);
-      scrollToPage(nextPage);
+      // Loop to first project when at the end
+      const nextIndex = currentPage >= maxIndex ? 0 : currentPage + 1;
+      setCurrentPage(nextIndex);
+      scrollToProject(nextIndex);
     };
 
     const goToPrevPage = () => {
-      const projectsPerPage = getProjectsPerPage();
-      const maxPage = Math.ceil(projects.length / projectsPerPage) - 1;
+      const maxIndex = getMaxScrollIndex();
       
-      // Loop to last page when at the beginning
-      const prevPage = currentPage === 0 ? maxPage : currentPage - 1;
-      setCurrentPage(prevPage);
-      scrollToPage(prevPage);
+      // Loop to last scrollable position when at the beginning
+      const prevIndex = currentPage <= 0 ? maxIndex : currentPage - 1;
+      setCurrentPage(prevIndex);
+      scrollToProject(prevIndex);
     };
     
-    // Updated scrollToPage function - fix the last page calculation
-    const scrollToPage = (pageIndex) => {
+    // Scroll to a specific project index
+    const scrollToProject = (projectIndex) => {
       if (carouselRef.current) {
         setIsScrolling(true);
         
-        const projectsPerPage = getProjectsPerPage();
         const carouselWidth = carouselRef.current.clientWidth;
-        const totalProjects = projects.length;
+        const cardWidth = isMobile ? carouselWidth : carouselWidth / 3;
         
-        let scrollPosition;
-        
-        // Special handling for last page with fewer than projectsPerPage items
-        if (!isMobile && pageIndex === Math.ceil(totalProjects / projectsPerPage) - 1) {
-          // If it's the last page and not divisible by projectsPerPage (like showing cards 4,5 of 5)
-          if (totalProjects % projectsPerPage !== 0) {
-            // Calculate how many cards from previous pages
-            const prevPagesCards = pageIndex * projectsPerPage;
-            // Calculate how many cards are on the last page
-            const lastPageCards = totalProjects - prevPagesCards;
-            // Ensure all cards on the last page are fully visible
-            scrollPosition = (totalProjects - lastPageCards) * (carouselWidth / projectsPerPage);
-          } else {
-            // Regular calculation for full pages
-            scrollPosition = pageIndex * carouselWidth;
-          }
-        } else {
-          // Standard calculation for non-edge cases
-          const scrollAmount = isMobile ? carouselWidth : carouselWidth / projectsPerPage;
-          scrollPosition = pageIndex * scrollAmount;
-        }
+        // Scroll to position the target project
+        const scrollPosition = projectIndex * cardWidth;
         
         carouselRef.current.scrollTo({
           left: scrollPosition,
@@ -219,7 +203,7 @@ const Project = () => {
       }
     };
     
-    // Handle scroll events to update currentPage with looping
+    // Handle scroll events to update currentPage (now tracks individual project index)
     const handleScroll = () => {
       // Don't update currentPage if we're programmatically scrolling
       if (isScrolling || !carouselRef.current) return;
@@ -227,22 +211,21 @@ const Project = () => {
       // Use requestAnimationFrame for better performance
       requestAnimationFrame(() => {
         const carouselWidth = carouselRef.current.clientWidth;
-        const scrollAmount = isMobile ? carouselWidth : carouselWidth / 3;
+        const cardWidth = isMobile ? carouselWidth : carouselWidth / 3;
         const scrollPosition = carouselRef.current.scrollLeft;
         
-        const projectsPerPage = getProjectsPerPage();
-        const maxPage = Math.ceil(projects.length / projectsPerPage) - 1;
+        const maxIndex = getMaxScrollIndex();
         
-        // Calculate page based on scroll position
-        let newPage = Math.round(scrollPosition / scrollAmount);
+        // Calculate project index based on scroll position
+        let newIndex = Math.round(scrollPosition / cardWidth);
         
         // Handle edge cases
-        if (newPage < 0) newPage = 0;
-        if (newPage > maxPage) newPage = maxPage;
+        if (newIndex < 0) newIndex = 0;
+        if (newIndex > maxIndex) newIndex = maxIndex;
         
         // Only update if actually changed to prevent unnecessary rerenders
-        if (newPage !== currentPage) {
-          setCurrentPage(newPage);
+        if (newIndex !== currentPage) {
+          setCurrentPage(newIndex);
         }
       });
     };
@@ -263,7 +246,7 @@ const Project = () => {
     .concat('/assets/logos/JagtapWorksLogo.png'); // Add portfolio image at the end
 
     return (
-      <section id="projects" className="min-h-screen p-8">
+      <section id="projects" className="min-h-screen p-8 content-center">
         <div className='mt-40 md:mt-0'>
           {/* Title reveals separately */}
         <RevealWrapper delay={0.1} duration={0.6}>
