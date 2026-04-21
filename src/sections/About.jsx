@@ -3,148 +3,109 @@ import RevealWrapper from "../components/RevealWrapper";
 import StaggeredReveal from "../components/StaggeredReveal";
 import SpotlightCard from "../components/SpotlightCard";
 
-// Modified SkillScroller for technical skills with mobile optimization
-const TechSkillScroller = ({ items }) => {
-  return (
-    <div className="relative overflow-hidden py-2 w-full">
-      <div className="flex overflow-x-auto no-scrollbar w-full">
-        <div className="flex animate-scroll-slow">
-          {items.map((item, index) => (
-            <div 
-              key={index}
-              className="flex-none mx-1 sm:mx-2 md:mx-4 flex items-center justify-center"
-            >
-              <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
-                {item.icon}
-              </div>
-            </div>
-          ))}
-          {/* Duplicate items for continuous scroll effect */}
-          {items.map((item, index) => (
-            <div 
-              key={`dup-${index}`} 
-              className="flex-none mx-1 sm:mx-2 md:mx-4 flex items-center justify-center"
-            >
-              <div className="w-16 h-16 flex items-center justify-center rounded-xl text-accent-main text-3xl">
-                {item.icon}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Modified SkillScroller for professional skills with mobile optimization
-const ProfSkillScroller = ({ items }) => {
-  return (
-    <div className="relative overflow-hidden py-2 w-full">
-      <div className="flex overflow-x-auto no-scrollbar w-full">
-        <div className="flex animate-scroll-slow-reverse">
-          {items.map((item, index) => (
-            <div 
-              key={index}
-              className="flex-none flex items-center justify-center"
-            >
-              <div className="px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl text-text-secondary text-xs sm:text-sm md:text-base whitespace-nowrap">
-                {item.label}
-              </div>
-            </div>
-          ))}
-          {/* Duplicate items for continuous scroll effect */}
-          {items.map((item, index) => (
-            <div 
-              key={`dup-${index}`} 
-              className="flex-none flex items-center justify-center"
-            >
-              <div className="px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl text-text-secondary text-xs sm:text-sm md:text-base whitespace-nowrap">
-                {item.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const About = () => {
-    // Technical skills with icons only
-    const technicalSkills = [
-        { icon: <img src="/assets/icons/python.png" alt="Python" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/java.png" alt="Java" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/csharp.png" alt="Csharp" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/react.png" alt="React" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/nodejs.png" alt="Nodejs" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/tailwindcss.png" alt="TailwindCSS" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/playwright.png" alt="Playwright" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/jest.png" alt="Jest" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/vitejs.png" alt="Vitejs" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/html.png" alt="HTML" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/css.png" alt="CSS" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/r.png" alt="R" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/unity.png" alt="Unity" className="h-10 w-10" /> },
-        //{ icon: <img src="/assets/icons/flutter.png" alt="Flutter" className="h-10 w-10" /> },
-        //{ icon: <img src="/assets/icons/dart.png" alt="Dart" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/androidstudio.png" alt="AndroidStudio" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/mysql.png" alt="Mysql" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/mongodb.png" alt="MongoDB" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/firebase.png" alt="Firebase" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/pytorch.png" alt="PyTorch" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/tensorflow.png" alt="TensorFlow" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/pandas.png" alt="Pandas" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/tableau.png" alt="Tableau" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/docker.png" alt="Docker" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/vscode.png" alt="VSCode" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/azure.png" alt="Azure" className="h-10 w-10" /> },
-        { icon: <img src="/assets/icons/cloudflare.png" alt="Cloudflare" className="h-10 w-10" /> },
+    const skillCategories = [
+        {
+            name: "Languages",
+            skills: [
+                { icon: "/assets/icons/python.png", label: "Python" },
+                { icon: "/assets/icons/java.png", label: "Java" },
+                { icon: "/assets/icons/csharp.png", label: "C#" },
+                { icon: "/assets/icons/r.png", label: "R" },
+                { icon: "/assets/icons/html.png", label: "HTML/CSS" },
+            ]
+        },
+        {
+            name: "Frameworks & Tools",
+            skills: [
+                { icon: "/assets/icons/react.png", label: "React" },
+                { icon: "/assets/icons/nodejs.png", label: "Node.js" },
+                { icon: "/assets/icons/tailwindcss.png", label: "Tailwind" },
+                { icon: "/assets/icons/vitejs.png", label: "Vite" },
+                { icon: "/assets/icons/playwright.png", label: "Playwright" },
+                { icon: "/assets/icons/jest.png", label: "Jest" },
+                { icon: "/assets/icons/unity.png", label: "Unity" },
+                { icon: "/assets/icons/androidstudio.png", label: "Android Studio" },
+            ]
+        },
+        {
+            name: "Data & ML",
+            skills: [
+                { icon: "/assets/icons/pytorch.png", label: "PyTorch" },
+                { icon: "/assets/icons/tensorflow.png", label: "TensorFlow" },
+                { icon: "/assets/icons/pandas.png", label: "Pandas" },
+                { icon: "/assets/icons/tableau.png", label: "Tableau" },
+            ]
+        },
+        {
+            name: "Cloud & Infrastructure",
+            skills: [
+                { icon: "/assets/icons/azure.png", label: "Azure" },
+                { icon: "/assets/icons/docker.png", label: "Docker" },
+                { icon: "/assets/icons/cloudflare.png", label: "Cloudflare" },
+                { icon: "/assets/icons/firebase.png", label: "Firebase" },
+                { icon: "/assets/icons/mysql.png", label: "MySQL" },
+                { icon: "/assets/icons/mongodb.png", label: "MongoDB" },
+            ]
+        }
     ];
 
-    // Professional skills with labels only
-    const professionalSkills = [
-        { label: "Time Management" },
-        { label: "Adaptability" },
-        { label: "Problem Solving" },
-        { label: "Collaboration" },
-        { label: "Critical Thinking" },
-        { label: "Project Management" },
-        { label: "Agile Methodologies" },
-        { label: "Team Leadership" },
-        { label: "Trust" },
-        { label: "Empathy" },
-        { label: "Communication" },
-        { label: "Story Telling" },
-        { label: "Financial Analysis" },
-        { label: "Business Law"}
+    const softSkills = [
+        "Problem Solving", "Team Leadership", "Agile", "Communication",
+        "Financial Analysis", "Story Telling", "Adaptability", "Empathy"
     ];
 
     return (
-        <section id="about" className="min-h-screen flex items-center justify-center w-full p-3 sm:p-5 md:p-8">
+        <section id="about" className="min-h-screen flex items-center justify-center w-full p-4 sm:p-6 md:p-8">
             <RevealWrapper delay={0.1} duration={0.6} className="w-full">
-                <SpotlightCard className="card max-w-full w-full sm:max-w-4xl mx-auto py-4 sm:py-5 md:py-6 px-3 sm:px-4 md:px-6" spotlightColor="rgba(92, 169, 255, 0.15)">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-accent-light">About Me</h2>
-                    
-                    <StaggeredReveal baseDelay={0.2} staggerDelay={0.1} duration={0.5}>
-                        <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
-                            I am a dynamic engineer who blends deep Computer Science expertise with an intuitive grasp of Management & Finance, uniquely positioned to transform complex challenges into innovative, actionable solutions.
+                <SpotlightCard className="card max-w-full w-full sm:max-w-4xl mx-auto py-6 sm:py-8 px-4 sm:px-6 md:px-8" spotlightColor="rgba(80, 158, 236, 0.12)">
+                    <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8 text-accent-light">About Me</h2>
+
+                    <StaggeredReveal baseDelay={0.2} staggerDelay={0.12} duration={0.5}>
+                        {/* Bio */}
+                        <div className="mb-8">
+                            <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-3">
+                                I'm a software engineer and data analyst who co-founded a food-tech startup, interned in Dubai, and studied at UBC. I get excited about building things that solve real problems — especially when they involve crunching data or architecting systems from scratch.
+                            </p>
+                            <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+                                My blend of technical depth and business instinct means I don't just write code — I understand why it matters. Whether it's reducing review time by 80% with an AI pipeline or leading a sprint team to deliver on schedule, I thrive where engineering meets impact.
+                            </p>
+                        </div>
+
+                        {/* Currently line */}
+                        <p className="font-mono text-xs sm:text-sm text-gold/80 mb-8 pl-3 border-l-2 border-gold/30">
+                            Currently — open to full-time SWE roles &amp; freelance projects
                         </p>
-                        
-                        <p className="text-xs sm:text-sm md:text-base text-text-secondary mb-2 sm:mb-3 md:mb-4">
-                            My rare synergy of technical mastery and human insight fostering trust, empathy, and adaptive communication enables me to bridge gaps few others can. I thrive on translating ambitious ideas into real-world impact, especially within fast-paced, high-growth environments.
-                        </p>
-                        
-                        <div className="overflow-hidden">
-                            {/* Mobile scroller container limits visible elements */}
-                            <div className="relative w-full overflow-hidden">
-                                <TechSkillScroller items={technicalSkills} />
+
+                        {/* Technical Skills Grid */}
+                        <div className="mb-8">
+                            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted mb-4">Technical Skills</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {skillCategories.map((category, catIdx) => (
+                                    <div key={catIdx} className="bg-surface-base/60 rounded-lg p-3 sm:p-4">
+                                        <h4 className="font-mono text-[0.65rem] uppercase tracking-wider text-accent-light/60 mb-2.5">{category.name}</h4>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {category.skills.map((skill, skillIdx) => (
+                                                <div key={skillIdx} className="flex items-center gap-1.5 px-2 py-1 bg-surface-overlay/60 rounded">
+                                                    <img src={skill.icon} alt={skill.label} className="h-4 w-4 sm:h-5 sm:w-5" width="20" height="20" loading="lazy" />
+                                                    <span className="text-[0.7rem] sm:text-xs text-text-secondary">{skill.label}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    
-                        <div className="overflow-hidden">
-                            {/* Mobile scroller container limits visible elements */}
-                            <div className="relative w-full overflow-hidden">
-                                <ProfSkillScroller items={professionalSkills} />
+
+                        {/* Soft Skills */}
+                        <div>
+                            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted mb-3">Beyond Code</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {softSkills.map((skill, idx) => (
+                                    <span key={idx} className="px-3 py-1.5 border border-border-subtle text-text-secondary text-xs rounded-full hover:border-gold/30 hover:text-gold/90 transition-colors duration-300 cursor-default">
+                                        {skill}
+                                    </span>
+                                ))}
                             </div>
                         </div>
                     </StaggeredReveal>

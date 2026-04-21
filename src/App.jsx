@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import StructuredData from './SEO/StructuredData';
 import Header from './components/Header';
@@ -6,14 +6,14 @@ import Footer from './components/Footer';
 import Home from './sections/Home';
 import Project from './sections/Project';
 import About from './sections/About';
-import Testimonials from './sections/Testimonials/index';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
 import ScrollToTop from './components/ScrollToTop';
-import CertificationsModal from './components/CertificationsModal';
-import ProjectModal from './components/ProjectModal';
 
-// Add this if it doesn't exist already
+const Testimonials = lazy(() => import('./sections/Testimonials/index'));
+const CertificationsModal = lazy(() => import('./components/CertificationsModal'));
+const ProjectModal = lazy(() => import('./components/ProjectModal'));
+
 export const EventEmitter = {
   events: {},
   dispatch: function(event, data) {
@@ -23,7 +23,6 @@ export const EventEmitter = {
   subscribe: function(event, callback) {
     if (!this.events[event]) this.events[event] = [];
     this.events[event].push(callback);
-    
     return () => {
       if (!this.events[event]) return;
       this.events[event] = this.events[event].filter(cb => cb !== callback);
@@ -33,7 +32,6 @@ export const EventEmitter = {
 
 function App() {
   const [certModalOpen, setCertModalOpen] = useState(false);
-  // Add state for project modal
   const [projectModalOpen, setProjectModalOpen] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
 
@@ -45,66 +43,52 @@ function App() {
         setCertModalOpen(true);
       }
     };
-    
     document.addEventListener('click', handleCertificationsClick);
-    
-    return () => {
-      document.removeEventListener('click', handleCertificationsClick);
-    };
+    return () => document.removeEventListener('click', handleCertificationsClick);
   }, []);
 
   useEffect(() => {
-    // Listen for project modal events
     const unsubscribeProject = EventEmitter.subscribe('openProjectModal', (project) => {
       setActiveProject(project);
       setProjectModalOpen(true);
     });
-    
-    // Clean up
-    return () => {
-      unsubscribeProject();
-    };
+    return () => unsubscribeProject();
   }, []);
 
   return (
     <>
       <Helmet>
         <title>JagtapWorks | Portfolio</title>
-        <meta name="description" content="Portfolio of Atharva Jagtap, showcasing skills and projects in software engineering and data analytics." />
-        {/* You can dynamically update meta tags based on active section */}
+        <meta name="description" content="Portfolio of Atharva Jagtap — software engineer, data analyst, and builder. UBC graduate with 10+ shipped projects." />
       </Helmet>
       <StructuredData />
-      
+
       <div className='flex flex-col min-h-screen bg-surface-base'>
-        <StarryBackground 
+        <StarryBackground
           densityRatio={0.3}
           sizeLimit={4}
-          defaultAlpha={0.5} 
+          defaultAlpha={0.5}
           scaleLimit={3}
-          proximityRatio={0.15} 
+          proximityRatio={0.15}
         />
-        
+
         <Header />
-        
-        {/* Home section doesn't need reveal animation as it's the first view */}
         <Home />
-        
-        {/* Projects section - slightly longer delay for waterfall effect */}
+
         <RevealWrapper delay={0.3} duration={0.7} threshold={0.1}>
           <Project />
         </RevealWrapper>
 
-        {/* About section with reveal animation - starts fading in after 0.2s */}
         <RevealWrapper delay={0.2} duration={0.7} threshold={0.1}>
           <About />
         </RevealWrapper>
-        
-        {/* New Testimonials section */}
-        <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
-          <Testimonials />
-        </RevealWrapper>
-        
-        {/* Wrap elements inside sections for more granular control */}
+
+        <Suspense fallback={<div className="min-h-[600px]" />}>
+          <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
+            <Testimonials />
+          </RevealWrapper>
+        </Suspense>
+
         <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
           <Footer />
         </RevealWrapper>
@@ -112,18 +96,24 @@ function App() {
         <ScrollToTop />
       </div>
 
-      {/* Certifications Modal */}
-      <CertificationsModal 
-        isOpen={certModalOpen} 
-        onClose={() => setCertModalOpen(false)} 
-      />
+      <Suspense fallback={null}>
+        {certModalOpen && (
+          <CertificationsModal
+            isOpen={certModalOpen}
+            onClose={() => setCertModalOpen(false)}
+          />
+        )}
+      </Suspense>
 
-      {/* Add ProjectModal at the App level */}
-      <ProjectModal 
-        isOpen={projectModalOpen}
-        project={activeProject}
-        onClose={() => setProjectModalOpen(false)}
-      />
+      <Suspense fallback={null}>
+        {projectModalOpen && activeProject && (
+          <ProjectModal
+            isOpen={projectModalOpen}
+            project={activeProject}
+            onClose={() => setProjectModalOpen(false)}
+          />
+        )}
+      </Suspense>
     </>
   );
 }

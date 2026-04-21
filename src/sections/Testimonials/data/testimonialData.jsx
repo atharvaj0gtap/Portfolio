@@ -25,20 +25,7 @@ export const testimonialData = [
       linkedin: "https://www.linkedin.com/in/siddharthsj/"
     }
   },
-  {
-    id: 3,
-    name: "ABC",
-    role: "X",
-    company: "XYZ",
-    testimonial: "Work with me and be the next one to give a testimonial!!",
-    shortTestimonial: "Work with me and be the next one to give a testimonial!!",
-    color: "#2E86C1", // Earth
-    caseStudyLink: "",
-    contactReference: {
-      linkedin: ""
-    }
-  }
-
+  // color: "#2E86C1" - Earth
   // color: "#E74C3C" - Mars
   // color: "#D35400" - Jupiter
   // color: "#F9E79F" - Saturn

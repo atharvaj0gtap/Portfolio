@@ -18,7 +18,7 @@
   width: 100%;
   max-width: 800px;
   max-height: 90vh;
-  background: hsla(222, 25%, 14%, 0.95);
+  background: hsla(230, 18%, 14%, 0.95);
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -42,7 +42,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
-  background: hsla(222, 25%, 14%, 0.98);
+  background: hsla(230, 18%, 14%, 0.98);
   z-index: 5;
 }
 
@@ -50,7 +50,7 @@
   margin: 0;
   font-size: 1.75rem;
   font-weight: 600;
-  color: hsl(220, 15%, 90%);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
 }
 
@@ -64,17 +64,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: hsl(220, 15%, 70%);
+  color: var(--text-secondary);
   transition: all 0.2s ease;
 }
 
 .close-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: hsl(220, 60%, 65%);
+  color: var(--accent-light);
 }
 
 .close-button:focus-visible {
-  outline: 2px solid hsl(220, 60%, 55%);
+  outline: 2px solid var(--accent-main);
   outline-offset: 2px;
 }
 
@@ -130,42 +130,42 @@
   margin: 0 0 4px 0;
   font-size: 1.2rem;
   font-weight: 600;
-  color: hsl(220, 15%, 90%);
+  color: var(--text-primary);
 }
 
 .cert-issuer {
   margin: 0 0 8px 0;
-  color: hsl(220, 60%, 65%);
+  color: var(--accent-light);
   font-size: 0.95rem;
 }
 
 .cert-dates {
   margin: 0 0 12px 0;
   font-size: 0.9rem;
-  color: hsl(220, 15%, 70%);
+  color: var(--text-secondary);
 }
 
 .verify-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: hsl(220, 60%, 65%);
+  color: var(--accent-light);
   font-size: 0.95rem;
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 4px;
-  background: rgba(100, 122, 190, 0.1);
+  background: rgba(80, 158, 236, 0.1);
   width: fit-content;
   transition: all 0.2s ease;
 }
 
 .verify-link:hover {
-  background: rgba(100, 122, 190, 0.2);
-  color: hsl(220, 60%, 75%);
+  background: rgba(80, 158, 236, 0.2);
+  color: var(--accent-light);
 }
 
 .verify-link:focus-visible {
-  outline: 2px solid hsl(220, 60%, 55%);
+  outline: 2px solid var(--accent-main);
   outline-offset: 2px;
 }
 
@@ -187,22 +187,22 @@
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .cert-logo {
     width: 60px;
     height: 60px;
     align-self: flex-start;
   }
-  
+
   .certifications-list {
     padding: 16px;
     gap: 16px;
   }
-  
+
   .cert-header {
     padding: 16px;
   }
-  
+
   .cert-header h2 {
     font-size: 1.5rem;
   }
@@ -213,7 +213,7 @@
   .cert-details h3 {
     font-size: 1.1rem;
   }
-  
+
   .certifications-modal-overlay {
     padding: 8px;
   }

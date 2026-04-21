@@ -92,15 +92,8 @@ const StarryBackground = ({
         // Use the higher of twinkling alpha or interaction alpha
         const displayAlpha = Math.max(twinkleAlpha, star.alpha);
         
-        // Apply the color with the new alpha - brighter stars
-        // Change from hsla to rgba for better visibility
         contextRef.current.fillStyle = `rgba(255, 255, 255, ${displayAlpha})`;
-        
-        // Add a stronger glow effect
-        contextRef.current.shadowBlur = star.size * star.scale * 2; // Doubled glow
-        contextRef.current.shadowColor = `rgba(255, 255, 255, ${displayAlpha * 0.7})`;
-        
-        // Draw the star
+
         contextRef.current.beginPath();
         contextRef.current.arc(
           star.x,
@@ -110,9 +103,6 @@ const StarryBackground = ({
           Math.PI * 2
         );
         contextRef.current.fill();
-        
-        // Reset shadow for performance
-        contextRef.current.shadowBlur = 0;
       });
     };
     

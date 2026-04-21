@@ -15,10 +15,10 @@
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    hsl(220, 60%, 65%, 0.3),
-    hsl(220, 60%, 55%, 0.8),
-    hsl(220, 60%, 65%, 0.3),
-    hsl(220, 60%, 55%, 0.8)
+    hsl(210, 85%, 70%, 0.3),
+    hsl(210, 80%, 62%, 0.8),
+    hsl(210, 85%, 70%, 0.3),
+    hsl(210, 80%, 62%, 0.8)
   );
   background-size: 300% 100%;
   animation: movingBorder 5s linear infinite;
@@ -30,10 +30,10 @@
   filter: blur(1.5px);
   background: linear-gradient(
     90deg,
-    hsl(220, 80%, 75%, 0.5),
-    hsl(220, 80%, 65%, 1),
-    hsl(220, 80%, 75%, 0.5),
-    hsl(220, 80%, 65%, 1)
+    hsl(210, 90%, 78%, 0.5),
+    hsl(210, 85%, 70%, 1),
+    hsl(210, 90%, 78%, 0.5),
+    hsl(210, 85%, 70%, 1)
   );
 }
 
