@@ -122,7 +122,7 @@ const CertificationsModal = ({ isOpen, onClose }) => {
             {certifications.map(cert => (
               <div className="certification-item" key={cert.id}>
                 <div className="cert-logo">
-                  {cert.logo && <img src={cert.logo} alt={`${cert.issuer} logo`} />}
+                  {cert.logo && <img src={cert.logo} alt={`${cert.issuer} logo`} width="48" height="48" loading="lazy" />}
                 </div>
                 <div className="cert-details">
                   <h3>{cert.name}</h3>

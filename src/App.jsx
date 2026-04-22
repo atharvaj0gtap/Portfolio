@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import StructuredData from './SEO/StructuredData';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -67,9 +67,7 @@ function App() {
         <StarryBackground
           densityRatio={0.3}
           sizeLimit={4}
-          defaultAlpha={0.5}
-          scaleLimit={3}
-          proximityRatio={0.15}
+          defaultAlpha={0.7}
         />
 
         <Header />

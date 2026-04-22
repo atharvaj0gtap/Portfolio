@@ -8,22 +8,21 @@ const ScrollToTop = () => {
 
   // Show button when page is scrolled down and determine scroll direction
   useEffect(() => {
+    let ticking = false;
     const toggleVisibility = () => {
-      const currentScrollY = window.pageYOffset;
-      
-      // Set visibility based on scroll position
-      if (currentScrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.pageYOffset;
+          setIsVisible(currentScrollY > 300);
+          setScrollingDown(currentScrollY > lastScrollY);
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
-      
-      // Determine scroll direction
-      setScrollingDown(currentScrollY > lastScrollY);
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, [lastScrollY]);
 

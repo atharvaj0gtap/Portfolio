@@ -13,13 +13,14 @@ const Header = () => {
 
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-                });
+                const intersecting = entries.filter(e => e.isIntersecting);
+                if (intersecting.length === 0) return;
+                const topmost = intersecting.reduce((a, b) =>
+                    a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+                );
+                setActiveSection(topmost.target.id);
             },
-            { rootMargin: '-40% 0px -55% 0px' }
+            { rootMargin: '-30% 0px -40% 0px' }
         );
 
         sectionIds.forEach(id => {
@@ -31,15 +32,21 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            if (isOpen) setisOpen(false);
-
-            if (window.scrollY > lastScrollY && window.scrollY > 80) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    if (isOpen) setisOpen(false);
+                    if (window.scrollY > lastScrollY && window.scrollY > 80) {
+                        setIsVisible(false);
+                    } else {
+                        setIsVisible(true);
+                    }
+                    setLastScrollY(window.scrollY);
+                    ticking = false;
+                });
+                ticking = true;
             }
-            setLastScrollY(window.scrollY);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });

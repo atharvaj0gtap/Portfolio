@@ -91,7 +91,7 @@ const ProjectFolder = ({
         {/* Logo positioned above the folder for better visibility */}
         {folderLogo && (
           <div className="folder-logo-container">
-            <img src={folderLogo} alt="Folder logo" className="folder-logo" />
+            <img src={folderLogo} alt="Folder logo" className="folder-logo" width="48" height="48" loading="lazy" />
           </div>
         )}
         
@@ -113,10 +113,13 @@ const ProjectFolder = ({
             >
               <div className="paper-content">
                 {projectThumbnails[i] && (
-                  <img 
-                    src={projectThumbnails[i]} 
-                    alt={`Project ${i + 1}`} 
+                  <img
+                    src={projectThumbnails[i]}
+                    alt={`Project ${i + 1}`}
                     className="paper-thumbnail"
+                    width="200"
+                    height="150"
+                    loading="lazy"
                   />
                 )}
               </div>
