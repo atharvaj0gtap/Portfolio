@@ -1,14 +1,15 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import StructuredData from './SEO/StructuredData';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './sections/Home';
-import Project from './sections/Project';
-import About from './sections/About';
-import RevealWrapper from './components/RevealWrapper';
+import CursorGlow from './components/CursorGlow';
 import StarryBackground from './components/StarryBackground';
 import ScrollToTop from './components/ScrollToTop';
+import Home from './sections/Home/Home';
+import About from './sections/About/About';
+import Projects from './sections/Projects/Projects';
+import Contact from './sections/Contact/Contact';
 
 const Testimonials = lazy(() => import('./sections/Testimonials/index'));
 const CertificationsModal = lazy(() => import('./components/CertificationsModal'));
@@ -16,19 +17,25 @@ const ProjectModal = lazy(() => import('./components/ProjectModal'));
 
 export const EventEmitter = {
   events: {},
-  dispatch: function(event, data) {
+  dispatch(event, data) {
     if (!this.events[event]) return;
-    this.events[event].forEach(callback => callback(data));
+    this.events[event].forEach((cb) => cb(data));
   },
-  subscribe: function(event, callback) {
+  subscribe(event, cb) {
     if (!this.events[event]) this.events[event] = [];
-    this.events[event].push(callback);
+    this.events[event].push(cb);
     return () => {
       if (!this.events[event]) return;
-      this.events[event] = this.events[event].filter(cb => cb !== callback);
+      this.events[event] = this.events[event].filter((c) => c !== cb);
     };
-  }
+  },
 };
+
+const SectionDivider = () => (
+  <div className="mx-auto w-full max-w-[960px] px-6 py-6 md:py-10">
+    <div className="section-divider" aria-hidden="true" />
+  </div>
+);
 
 function App() {
   const [certModalOpen, setCertModalOpen] = useState(false);
@@ -48,22 +55,35 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const unsubscribeProject = EventEmitter.subscribe('openProjectModal', (project) => {
+    const unsubscribe = EventEmitter.subscribe('openProjectModal', (project) => {
       setActiveProject(project);
       setProjectModalOpen(true);
     });
-    return () => unsubscribeProject();
+    return () => unsubscribe();
   }, []);
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
-        <title>JagtapWorks | Portfolio</title>
-        <meta name="description" content="Portfolio of Atharva Jagtap — software engineer, data analyst, and builder. UBC graduate with 10+ shipped projects." />
+        <title>JagtapWorks — Atharva Jagtap · Software Engineer & Builder</title>
+        <meta
+          name="description"
+          content="Portfolio of Atharva Jagtap — software engineer, data analyst, and builder. UBC graduate with 10+ shipped projects at the intersection of computer science, finance, and psychology."
+        />
+        <meta property="og:title" content="JagtapWorks — Atharva Jagtap" />
+        <meta
+          property="og:description"
+          content="I build systems that turn ideas into impact. UBC graduate, NxtMeals co-founder, 10+ shipped projects."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jagtapworks.com" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
       <StructuredData />
 
-      <div className='flex flex-col min-h-screen bg-surface-base'>
+      <CursorGlow />
+
+      <div className="relative flex min-h-screen flex-col bg-surface-base">
         <StarryBackground
           densityRatio={0.3}
           sizeLimit={4}
@@ -73,26 +93,26 @@ function App() {
         />
 
         <Header />
-        <Home />
 
-        <RevealWrapper delay={0.3} duration={0.7} threshold={0.1}>
-          <Project />
-        </RevealWrapper>
+        <main className="relative z-10">
+          <Home />
 
-        <RevealWrapper delay={0.2} duration={0.7} threshold={0.1}>
+          <SectionDivider />
           <About />
-        </RevealWrapper>
 
-        <Suspense fallback={<div className="min-h-[600px]" />}>
-          <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
+          <SectionDivider />
+          <Projects />
+
+          <SectionDivider />
+          <Suspense fallback={<div className="min-h-[600px]" aria-hidden="true" />}>
             <Testimonials />
-          </RevealWrapper>
-        </Suspense>
+          </Suspense>
 
-        <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
-          <Footer />
-        </RevealWrapper>
+          <SectionDivider />
+          <Contact />
+        </main>
 
+        <Footer />
         <ScrollToTop />
       </div>
 
@@ -114,7 +134,7 @@ function App() {
           />
         )}
       </Suspense>
-    </>
+    </HelmetProvider>
   );
 }
 

@@ -1,5 +1,22 @@
 import React, { useRef, useEffect } from 'react';
-import * as THREE from 'three';
+import {
+  Scene,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AmbientLight,
+  PointLight,
+  TextureLoader,
+  MeshStandardMaterial,
+  SphereGeometry,
+  Mesh,
+  EllipseCurve,
+  BufferGeometry,
+  LineBasicMaterial,
+  Line,
+  Raycaster,
+  Vector2,
+  Vector3,
+} from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { testimonialData, sunData } from '../data/testimonialData';
 
@@ -24,16 +41,16 @@ const PlanetarySystem = ({
     const isMobile = window.innerWidth < 768;
     
     // Scene setup
-    const scene = new THREE.Scene();
+    const scene = new Scene();
     sceneRef.current = scene;
     
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+    const camera = new PerspectiveCamera(50, width / height, 0.1, 1000);
     camera.position.set(0, 20, 40);
     camera.lookAt(0, 0, 0);
     
     // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ 
+    const renderer = new WebGLRenderer({ 
       antialias: true, 
       alpha: true 
     });
@@ -61,32 +78,32 @@ const PlanetarySystem = ({
     }
     
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
     
-    const pointLight = new THREE.PointLight(0xffffff, 2);
+    const pointLight = new PointLight(0xffffff, 2);
     pointLight.position.set(0, 0, 0);
     scene.add(pointLight);
     
     // Load textures
-    const textureLoader = new THREE.TextureLoader();
+    const textureLoader = new TextureLoader();
     
     // Create sun with texture
     const sunTexture = textureLoader.load('/assets/textures/sun.jpg');
-    const sunMaterial = new THREE.MeshStandardMaterial({
+    const sunMaterial = new MeshStandardMaterial({
       map: sunTexture,
       emissive: 0xf5e942,
       emissiveIntensity: 0.6,
       emissiveMap: sunTexture
     });
     
-    const sunGeometry = new THREE.SphereGeometry(3, 32, 32);
-    const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+    const sunGeometry = new SphereGeometry(3, 32, 32);
+    const sun = new Mesh(sunGeometry, sunMaterial);
     
     // Add user data to enable interaction
     sun.userData = {
       isSun: true,
-      originalScale: new THREE.Vector3(1, 1, 1),
+      originalScale: new Vector3(1, 1, 1),
       isFocused: false
     };
     
@@ -94,7 +111,7 @@ const PlanetarySystem = ({
     
     // Create orbit paths with references to track them
     const createOrbitPath = (radius, index) => {
-      const curve = new THREE.EllipseCurve(
+      const curve = new EllipseCurve(
         0, 0,             // Center x, y
         radius, radius,   // xRadius, yRadius
         0, 2 * Math.PI,   // Start angle, end angle
@@ -103,14 +120,14 @@ const PlanetarySystem = ({
       );
       
       const points = curve.getPoints(128);
-      const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const material = new THREE.LineBasicMaterial({ 
+      const geometry = new BufferGeometry().setFromPoints(points);
+      const material = new LineBasicMaterial({ 
         color: 0xffffff,
         transparent: true,
         opacity: 0.2
       });
       
-      const ellipse = new THREE.Line(geometry, material);
+      const ellipse = new Line(geometry, material);
       ellipse.rotation.x = Math.PI / 2;
       ellipse.userData = { planetIndex: index };
       scene.add(ellipse);
@@ -129,16 +146,16 @@ const PlanetarySystem = ({
       orbitPaths.push(orbitPath);
       
       // Create planet
-      const planetGeometry = new THREE.SphereGeometry(1.2, 32, 32);
+      const planetGeometry = new SphereGeometry(1.2, 32, 32);
       
       // Load a texture based on planet type
       const planetTexture = textureLoader.load(`/assets/textures/${item.id}.jpg`);
-      const planetMaterial = new THREE.MeshStandardMaterial({
+      const planetMaterial = new MeshStandardMaterial({
         map: planetTexture,
         roughness: 0.9,
         metalness: 0.2,
       });
-      const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+      const planet = new Mesh(planetGeometry, planetMaterial);
       
       // Random starting position on the orbit
       const angle = Math.random() * Math.PI * 2;
@@ -183,8 +200,8 @@ const PlanetarySystem = ({
     container.appendChild(sun.userData.htmlElement);
     
     // Raycaster for interactions
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
+    const raycaster = new Raycaster();
+    const mouse = new Vector2();
     
     const handleClick = (event) => {
       // Normalize mouse position
@@ -494,7 +511,7 @@ const PlanetarySystem = ({
         planets.forEach(planet => {
           if (planet.userData.htmlElement) {
             // Project 3D position to screen coordinates
-            const vector = new THREE.Vector3();
+            const vector = new Vector3();
             vector.setFromMatrixPosition(planet.matrixWorld);
             vector.project(camera);
             
@@ -507,7 +524,7 @@ const PlanetarySystem = ({
         
         // Update sun focus element
         if (sun.userData.htmlElement) {
-          const vector = new THREE.Vector3();
+          const vector = new Vector3();
           vector.setFromMatrixPosition(sun.matrixWorld);
           vector.project(camera);
           
