@@ -45,7 +45,7 @@ const Project = () => {
         \u25aa\tConducted end-to-end testing with Playwright (UI) and Jest (API), boosting test coverage to 60% and preventing production defects prior to deployment.`,
         technologies: ["Java", "React", "Node.js", "MySQL"],
         projectLink: "https://github.com/COSC-499-W2024",
-        image: "/assets/icons/BFL.png",
+        image: "/assets/projects/BFL.png",
         metric: "80% Faster Reviews"
       },
       {
@@ -59,7 +59,7 @@ const Project = () => {
         \u25aa\tAuthored an analytical report with data-driven policy recommendations (e.g., targeted reskilling programs projected to mitigate 20% of forecasted job losses) and presented findings to academic audiences.`,
         technologies: ["Pandas", "Matplotlib", "Numpy"],
         projectLink: "https://github.com/atharvaj0gtap/AI-Trend-Analysis",
-        image: "/assets/icons/AI.png",
+        image: "/assets/projects/AI.png",
         metric: "500+ Roles Analyzed"
       },
       {
@@ -69,7 +69,7 @@ const Project = () => {
         longDescription: `\u25aa\tRevamped the legibility classifier by integrating diverse data augmentations (random noise, real-world distortions) and a MixUp label-blending strategy with soft targets, improving classifier accuracy by 18% and reducing illegible-frame false positives by 25%.`,
         technologies: ["TensorFlow", "PyTorch", "Pandas", "OpenCV"],
         projectLink: "https://github.com/MahmoudOsama97/jersey-number-pipeline_PlusPlus",
-        image: "/assets/icons/sys_arch.png",
+        image: "/assets/projects/sys_arch.png",
         metric: "+18% Accuracy"
       },
       {
@@ -83,7 +83,7 @@ const Project = () => {
         \u25aa\tAuthored and published a GitHub-hosted research paper, "Network Analysis of Alberta Wildfires: Understanding Clustering and Root Causes," driving peer collaboration and shaping future mitigation and monitoring strategies.`,
         technologies: ["R", "DBSCAN", "K-Means", "ggplot2"],
         projectLink: "https://github.com/atharvaj0gtap/Network-Science-Team-4",
-        image: "/assets/icons/NetworkAnalysis.png",
+        image: "/assets/projects/NetworkAnalysis.png",
         metric: "69 Clusters Found"
       },
       {
@@ -97,7 +97,7 @@ const Project = () => {
         \u25aa\tWrote a research paper titled, "Exploring The Adaptive Bubble Cursor In Gamified Environments", applying T-tests and ANOVA to validate statistically significant gains in speed, accuracy, and user engagement (p < .01).`,
         technologies: ["Unity", "C#"],
         projectLink: "https://github.com/atharvaj0gtap/COSC-441-Group-5",
-        image: "/assets/icons/HCI.jpg",
+        image: "/assets/projects/HCI.jpg",
         metric: "47% Fewer Errors"
       },
       {
@@ -111,7 +111,7 @@ const Project = () => {
         \u25aa\tEngineered RESTful APIs in Node.js/Express with a MongoDB datastore, optimizing data retrieval and update processes for student, teacher, and course information.`,
         technologies: ["React", "Bootstrap", "Express.js", "MongoDB"],
         projectLink: "https://github.com/dabby04/TheLearningLayers",
-        image: "/assets/icons/LearningLayers.png",
+        image: "/assets/projects/LearningLayers.png",
         metric: "95% MVP Delivered"
       },
       {
@@ -123,7 +123,7 @@ const Project = () => {
         \u25aa\tIntegrated Google Maps API for real-time geolocation and optimized routing, boosting navigation accuracy by 95% and accelerating user response in critical relief scenarios.`,
         technologies: ["Android Studio", "Firebase", "Google Maps API"],
         projectLink: "https://github.com/atharvaj0gtap/ShelterFinderApp",
-        image: "/assets/icons/ShelterFinder.png",
+        image: "/assets/projects/ShelterFinder.png",
         metric: "1.2 min Faster"
       },
       {
@@ -135,7 +135,7 @@ const Project = () => {
         \u25aa\tConstructed a Java/HTML/CSS frontend following UX best practices, introducing real-time order status and one-click checkout.`,
         technologies: ["JSP", "JDBC", "SQL", "HTML", "CSS"],
         projectLink: "https://github.com/atharvaj0gtap/Web-development",
-        image: "/assets/icons/SwiftShopper.png",
+        image: "/assets/projects/SwiftShopper.png",
         metric: "25% Fewer Errors"
       },
       {
@@ -149,7 +149,7 @@ const Project = () => {
         \u25aa\tDesigned an interactive Tableau dashboard featuring a world map, time-series plots, and drill-down filters, boosting stakeholder engagement.`,
         technologies: ["Tableau", "Pandas", "Seaborn", "Matplotlib"],
         projectLink: "https://github.com/ubco-W2022T1-cosc301/project-group41",
-        image: "/assets/icons/WorldHappiness.png",
+        image: "/assets/projects/WorldHappiness.png",
         metric: "150+ Countries"
       }
     ];

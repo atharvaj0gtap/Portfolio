@@ -65,7 +65,7 @@ const Home = () => {
           kind too. My work lives at the intersection of computer science, finance, and psychology.
         </p>
         <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal-4">
-          I don't just build software.&nbsp; I architect solutions that account for the messy
+          I architect solutions that account for the messy<br></br>
           reality of how people think, decide, and act.
         </p>
 
