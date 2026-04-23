@@ -73,6 +73,13 @@ function App() {
         <Header />
         <Home />
 
+        {/* Hero bottom fade — lives outside Home so canvas compositing can't interfere */}
+        <div
+          aria-hidden="true"
+          className="relative pointer-events-none -mt-48 h-48 z-10"
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--color-bg))' }}
+        />
+
         <RevealWrapper delay={0.3} duration={0.7} threshold={0.1}>
           <Project />
         </RevealWrapper>

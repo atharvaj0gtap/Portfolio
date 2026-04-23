@@ -89,11 +89,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Bottom fade — blends hero into the next section */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-surface-base pointer-events-none z-[5]"
-        aria-hidden="true"
-      />
     </section>
   );
 };
