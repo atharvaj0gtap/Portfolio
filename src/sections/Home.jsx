@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col justify-center items-center w-full min-h-screen overflow-hidden"
+      className="relative flex flex-col justify-center items-center w-full min-h-screen"
     >
       {/* Mobile ambient gradient (starry canvas still visible through it) */}
       <div className="hero-mobile-bg absolute inset-0 pointer-events-none md:hidden" aria-hidden="true" />
@@ -61,11 +61,11 @@ const Home = () => {
 
         {/* Subtitle */}
         <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mb-4 leading-relaxed reveal-3">
-          I'm an engineer who thinks in systems&nbsp;— not just the technical kind, but the human
+          I'm an engineer who thinks in systems.&nbsp; Not just the technical kind, but the human
           kind too. My work lives at the intersection of computer science, finance, and psychology.
         </p>
         <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal-4">
-          I don't just build software&nbsp;— I architect solutions that account for the messy
+          I don't just build software.&nbsp; I architect solutions that account for the messy
           reality of how people think, decide, and act.
         </p>
 
@@ -88,6 +88,12 @@ const Home = () => {
           </a>
         </div>
       </div>
+
+      {/* Bottom fade — blends hero into the next section */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-surface-base pointer-events-none z-[5]"
+        aria-hidden="true"
+      />
     </section>
   );
 };

@@ -52,7 +52,7 @@ const StarryBackground = ({
       const vmin = Math.min(w, h);
       const mobileRatio = w < 768 ? 0.7 : 1;
       const total = Math.floor(vmin * densityRatio * mobileRatio);
-      const staticCount = Math.floor(total * 0.7);
+      const staticCount = Math.floor(total * 0.67); // 67% static, 33% animating
       const animCount = total - staticCount;
       const randAlpha = () => 0.25 + Math.random() * Math.max(0, defaultAlpha - 0.25);
 
@@ -110,9 +110,13 @@ const StarryBackground = ({
       animCtx.globalAlpha = 1;
     }
 
+    let lastWidth = window.innerWidth;
     function handleResize() {
+      const newWidth = window.innerWidth;
+      const widthChanged = newWidth !== lastWidth;
+      lastWidth = newWidth;
       sizeCanvases();
-      generateStars();
+      if (widthChanged) generateStars();
       drawStaticLayer();
     }
 
