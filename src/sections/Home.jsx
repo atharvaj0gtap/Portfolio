@@ -43,6 +43,11 @@ const Home = () => {
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto text-center px-6">
 
+        {/* Name */}
+        <p className="font-display text-3xl md:text-5xl font-normal tracking-tight text-text-primary mb-3 reveal-0">
+          Atharva Jagtap
+        </p>
+
         {/* Overline */}
         <p className="overline mb-8 reveal-1">
           Software Engineer&nbsp;&middot;&nbsp;Strategist&nbsp;&middot;&nbsp;Builder
@@ -82,16 +87,6 @@ const Home = () => {
             Download Resume
           </a>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal-7 text-border-strong"
-        aria-hidden="true"
-      >
-        <span className="font-mono text-[0.6rem] tracking-[0.25em] uppercase text-text-muted">
-          Scroll
-        </span>
       </div>
     </section>
   );
