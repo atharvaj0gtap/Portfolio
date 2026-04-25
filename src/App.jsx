@@ -8,9 +8,8 @@ import Project from './sections/Project';
 import About from './sections/About';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
-import ScrollToTop from './components/ScrollToTop';
 
-const Testimonials = lazy(() => import('./sections/Testimonials/index'));
+const Testimonials = lazy(() => import('./sections/Testimonials/Testimonials'));
 const CertificationsModal = lazy(() => import('./components/CertificationsModal'));
 const ProjectModal = lazy(() => import('./components/ProjectModal'));
 
@@ -98,7 +97,6 @@ function App() {
           <Footer />
         </RevealWrapper>
 
-        <ScrollToTop />
       </div>
 
       <Suspense fallback={null}>
