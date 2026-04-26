@@ -51,6 +51,8 @@ const ProjectModal = ({ isOpen, project, onClose }) => {
               alt={project.title}
               className="absolute inset-0 w-full h-full object-contain p-6 md:p-8"
               loading="lazy"
+              width="800"
+              height="600"
             />
           </div>
         )}

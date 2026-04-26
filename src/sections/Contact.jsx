@@ -111,9 +111,6 @@ const Contact = () => (
         <p className="text-text-muted text-sm">
           Based in Canada and Dubai, working globally.
         </p>
-        <p className="text-text-muted text-sm mt-1">
-          Let's build something worth building.
-        </p>
       </RevealWrapper>
 
     </div>
