@@ -100,11 +100,6 @@ const About = () => (
               Outside the code: gym, books on finance and behavioral economics, cooking, and
               occasionally staring at the stars long enough to remember the scale of things.
             </p>
-
-            {/* Availability */}
-            <p className="font-mono text-sm text-gold/80 pt-2 pl-3 border-l-2 border-gold/30">
-              Currently available for: freelance work, full-time roles, and good conversations.
-            </p>
           </div>
 
           {/* Photo — replace the div below with an <img> when ready */}

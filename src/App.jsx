@@ -8,6 +8,7 @@ import Project from './sections/Project';
 import About from './sections/About';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
+import Contact from './sections/Contact';
 
 const Testimonials = lazy(() => import('./sections/Testimonials/Testimonials'));
 const CertificationsModal = lazy(() => import('./components/CertificationsModal'));
@@ -92,6 +93,10 @@ function App() {
             <Testimonials />
           </RevealWrapper>
         </Suspense>
+
+        <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
+          <Contact />
+        </RevealWrapper>
 
         <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
           <Footer />

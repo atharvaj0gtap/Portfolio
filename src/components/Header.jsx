@@ -93,7 +93,7 @@ const Header = () => {
           {/* Logo */}
           <a
             href="#home"
-            className="text-xl font-display tracking-tight text-text-primary hover:text-gold transition-colors duration-200"
+            className="text-2xl font-display tracking-tight text-text-primary hover:text-gold transition-colors duration-200"
           >
             JagtapWorks
           </a>
