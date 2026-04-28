@@ -58,8 +58,8 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>JagtapWorks | Portfolio</title>
-        <meta name="description" content="Portfolio of Atharva Jagtap — software engineer, data analyst, and builder. UBC graduate with 10+ shipped projects." />
+        <title>JagtapWorks | Atharva Jagtap — Software Engineer, Strategist, Builder</title>
+        <meta name="description" content="The portfolio of Atharva Jagtap — UBC Computer Science graduate, NxtMeals co-founder, and software engineer working at the intersection of computer science, finance, and psychology." />
       </Helmet>
       <StructuredData />
 

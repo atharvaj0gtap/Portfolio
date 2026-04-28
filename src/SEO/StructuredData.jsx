@@ -7,7 +7,9 @@ const StructuredData = () => {
     "@type": "Person",
     "name": "Atharva Jagtap",
     "url": "https://jagtapworks.com",
-    "image": "https://jagtapworks.com/og-image.png",
+    "image": "https://jagtapworks.com/assets/logos/og-image.png",
+    "email": "atharva@jagtapworks.com",
+    "jobTitle": "Software Engineer",
     "alumniOf": [
       {
         "@type": "CollegeOrUniversity",
@@ -17,35 +19,28 @@ const StructuredData = () => {
     ],
     "knowsAbout": [
       "Software Engineering",
-      "Data Analytics", 
-      "Web Development",
+      "Full-Stack Web Development",
+      "Data Analytics",
       "Machine Learning",
-      "Data Visualization",
       "Cloud Computing",
-      "Project Management",
-      "UI/UX Design",
+      "Business Strategy",
+      "Finance",
       "Database Management",
-      "Mobile App Development",
-      "Data Engineering"
+      "Data Visualization",
+      "UI/UX Design"
     ],
     "sameAs": [
       "https://www.linkedin.com/in/atharvahjagtap/",
       "https://github.com/atharvaj0gtap"
-      // Add other relevant profiles
     ]
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "JagtapWorks Portfolio",
+    "name": "JagtapWorks",
     "url": "https://jagtapworks.com",
-    "description": "Professional portfolio showcasing projects and expertise",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://jagtapworks.com/#search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "description": "Portfolio of Atharva Jagtap — software engineer, NxtMeals co-founder, and UBC Computer Science graduate working at the intersection of computer science, finance, and psychology."
   };
 
   return (

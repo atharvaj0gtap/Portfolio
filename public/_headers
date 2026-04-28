@@ -1,0 +1,12 @@
+# Cloudflare Pages — Cache headers
+# Hashed assets (JS/CSS chunks, images, fonts) are immutable for 1 year.
+# HTML is always revalidated so users get fresh deploys immediately.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

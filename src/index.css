@@ -413,13 +413,7 @@ body {
     position: relative;
   }
 
-  .button-primary {
-    @apply inline-flex items-center gap-2 px-5 py-2 bg-gold text-surface-base rounded transition-all;
-  }
 
-  .button-secondary {
-    @apply inline-flex items-center gap-2 px-5 py-2 bg-surface-raised border border-border-strong text-text-primary rounded transition-colors;
-  }
 }
 
 /* ==========================================================================
@@ -542,66 +536,6 @@ body {
   box-shadow: 0 0 12px hsla(42, 82%, 62%, 0.6);
 }
 
-/* ==========================================================================
-   Magnetic cursor glow
-   ========================================================================== */
-
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    hsla(42, 90%, 70%, 0.08) 0%,
-    hsla(42, 90%, 70%, 0.03) 35%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-  transition: opacity 300ms var(--ease-out), background 300ms var(--ease-out);
-  will-change: transform;
-}
-
-.cursor-glow[data-hover='true'] {
-  background: radial-gradient(
-    circle,
-    hsla(42, 90%, 70%, 0.16) 0%,
-    hsla(42, 90%, 70%, 0.06) 35%,
-    transparent 70%
-  );
-}
-
-@media (max-width: 1024px), (hover: none) {
-  .cursor-glow {
-    display: none;
-  }
-}
-
-/* ==========================================================================
-   Word-split reveal (for section H2s)
-   ========================================================================== */
-
-.word-reveal {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.word-reveal > span {
-  display: inline-block;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: transform 0.7s var(--ease-out), opacity 0.7s var(--ease-out);
-}
-
-.word-reveal.is-visible > span {
-  transform: translateY(0);
-  opacity: 1;
-}
 
 /* ==========================================================================
    Hero 3D canvas — hidden on mobile, CSS gradient fills instead
