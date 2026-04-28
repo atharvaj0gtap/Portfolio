@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import StructuredData from './SEO/StructuredData';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -8,9 +8,9 @@ import Project from './sections/Project';
 import About from './sections/About';
 import RevealWrapper from './components/RevealWrapper';
 import StarryBackground from './components/StarryBackground';
-import ScrollToTop from './components/ScrollToTop';
+import Contact from './sections/Contact';
 
-const Testimonials = lazy(() => import('./sections/Testimonials/index'));
+const Testimonials = lazy(() => import('./sections/Testimonials/Testimonials'));
 const CertificationsModal = lazy(() => import('./components/CertificationsModal'));
 const ProjectModal = lazy(() => import('./components/ProjectModal'));
 
@@ -58,8 +58,8 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>JagtapWorks | Portfolio</title>
-        <meta name="description" content="Portfolio of Atharva Jagtap — software engineer, data analyst, and builder. UBC graduate with 10+ shipped projects." />
+        <title>JagtapWorks | Atharva Jagtap — Software Engineer, Strategist, Builder</title>
+        <meta name="description" content="The portfolio of Atharva Jagtap — UBC Computer Science graduate, NxtMeals co-founder, and software engineer working at the intersection of computer science, finance, and psychology." />
       </Helmet>
       <StructuredData />
 
@@ -67,13 +67,18 @@ function App() {
         <StarryBackground
           densityRatio={0.3}
           sizeLimit={4}
-          defaultAlpha={0.5}
-          scaleLimit={3}
-          proximityRatio={0.15}
+          defaultAlpha={0.7}
         />
 
         <Header />
         <Home />
+
+        {/* Hero bottom fade — lives outside Home so canvas compositing can't interfere */}
+        <div
+          aria-hidden="true"
+          className="relative pointer-events-none -mt-48 h-48 z-10"
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--color-bg))' }}
+        />
 
         <RevealWrapper delay={0.3} duration={0.7} threshold={0.1}>
           <Project />
@@ -89,11 +94,14 @@ function App() {
           </RevealWrapper>
         </Suspense>
 
+        <RevealWrapper delay={0.4} duration={0.7} threshold={0.1}>
+          <Contact />
+        </RevealWrapper>
+
         <RevealWrapper delay={0.5} duration={0.7} threshold={0.1}>
           <Footer />
         </RevealWrapper>
 
-        <ScrollToTop />
       </div>
 
       <Suspense fallback={null}>
