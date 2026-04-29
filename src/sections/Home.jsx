@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { smoothScrollTo } from '../utils/smoothScroll';
 
 const Home = () => {
   const canvasRef = useRef(null);
@@ -65,7 +66,7 @@ const Home = () => {
           kind too. My work lives at the intersection of computer science, finance, and psychology.
         </p>
         <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal-4">
-          I architect solutions that account for the messy<br></br>
+          I architect solutions that account for the messy
           reality of how people think, decide, and act.
         </p>
 
@@ -75,8 +76,12 @@ const Home = () => {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-6">
-          <a href="#projects" className="btn-primary">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-6 mb-24">
+          <a
+            href="#projects"
+            onClick={(e) => { e.preventDefault(); smoothScrollTo('projects'); }}
+            className="btn-primary"
+          >
             View My Work
           </a>
           <a

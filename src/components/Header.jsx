@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { smoothScrollTo } from '../utils/smoothScroll';
 
 const NAV_LINKS = [
   { id: 'home',         label: 'Home' },
@@ -74,7 +75,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLinkClick = () => setIsOpen(false);
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    smoothScrollTo(id);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -93,7 +98,8 @@ const Header = () => {
           {/* Logo */}
           <a
             href="#home"
-            className="text-2xl font-display tracking-tight text-text-primary hover:text-gold transition-colors duration-200"
+            onClick={(e) => handleNavClick(e, 'home')}
+            className="nav-logo text-2xl font-display tracking-tight text-text-primary transition-colors duration-200"
           >
             JagtapWorks
           </a>
@@ -113,6 +119,7 @@ const Header = () => {
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link.id)}
                   className={`relative py-1.5 text-sm transition-colors duration-200 ${
                     activeSection === link.id
                       ? 'text-text-primary'
@@ -138,6 +145,7 @@ const Header = () => {
               </a>
               <a
                 href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
                 className="px-4 py-1.5 bg-gold text-surface-base text-sm font-semibold rounded-md hover:bg-gold-bright transition-all duration-200"
               >
                 Let's Talk
@@ -170,7 +178,7 @@ const Header = () => {
               >
                 <a
                   href={`#${link.id}`}
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleNavClick(e, link.id)}
                   className={`font-display text-3xl transition-colors duration-200 ${
                     activeSection === link.id
                       ? 'text-text-primary'
@@ -194,14 +202,14 @@ const Header = () => {
             <a
               href="/assets/certifications/AtharvaJagtap_Resume.pdf"
               download
-              onClick={handleLinkClick}
+              onClick={() => setIsOpen(false)}
               className="px-5 py-2.5 border border-gold/30 text-gold text-sm rounded-md hover:bg-gold/10 transition-all"
             >
               Resume
             </a>
             <a
               href="#contact"
-              onClick={handleLinkClick}
+              onClick={(e) => handleNavClick(e, 'contact')}
               className="px-5 py-2.5 bg-gold text-surface-base text-sm font-semibold rounded-md hover:bg-gold-bright transition-all"
             >
               Let's Talk
