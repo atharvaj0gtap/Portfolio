@@ -523,6 +523,13 @@ body {
    Scroll progress bar
    ========================================================================== */
 
+@media (hover: hover) and (pointer: fine) {
+  .nav-logo:hover { color: var(--color-gold); }
+}
+@media (hover: none) {
+  .nav-logo:active { color: var(--color-gold); }
+}
+
 .scroll-progress {
   position: fixed;
   top: 0;

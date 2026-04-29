@@ -17,25 +17,25 @@ const SKILL_CATEGORIES = [
   {
     name: "Frameworks & Tools",
     skills: [
-      { icon: "/assets/icons/react.png",         label: "React" },
+      { icon: "/assets/icons/react.svg",         label: "React" },
       { icon: "/assets/icons/nodejs.svg",        label: "Node.js" },
-      { icon: "/assets/icons/tailwindcss.png",   label: "Tailwind" },
-      { icon: "/assets/icons/vitejs.png",        label: "Vite" },
+      { icon: "/assets/icons/tailwindcss.svg",   label: "Tailwind" },
+      { icon: "/assets/icons/vitejs.svg",        label: "Vite" },
       { icon: "/assets/icons/flutter.svg",       label: "Flutter" },
       { icon: "/assets/icons/playwright.svg",    label: "Playwright" },
       { icon: "/assets/icons/jest.svg",          label: "Jest" },
-      { icon: "/assets/icons/unity.png",         label: "Unity" },
+      { icon: "/assets/icons/unity.svg",         label: "Unity" },
       { icon: "/assets/icons/androidstudio.svg", label: "Android Studio" },
-      { icon: "/assets/icons/vscode.png",        label: "VS Code" },
+      { icon: "/assets/icons/vscode.svg",        label: "VS Code" },
     ],
   },
   {
     name: "Data & ML",
     skills: [
       { icon: "/assets/icons/pytorch.svg",    label: "PyTorch" },
-      { icon: "/assets/icons/tensorflow.png", label: "TensorFlow" },
+      { icon: "/assets/icons/tensorflow.svg", label: "TensorFlow" },
       { icon: "/assets/icons/pandas.svg",     label: "Pandas" },
-      { icon: "/assets/icons/tableau.png",    label: "Tableau" },
+      { icon: "/assets/icons/tableau.svg",    label: "Tableau" },
     ],
   },
   {
@@ -52,7 +52,7 @@ const SKILL_CATEGORIES = [
 ];
 
 const About = () => (
-  <section id="about" className="min-h-screen p-6 md:p-8 content-center">
+  <section id="about" className="min-h-screen p-6 md:p-16 content-center">
     <div className="max-w-5xl mx-auto mt-20 md:mt-0">
 
       {/* Header */}

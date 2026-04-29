@@ -8,7 +8,7 @@ const CERTIFICATIONS = [
     issuer: 'Microsoft',
     date: 'Aug 2024',
     credentialLink: 'https://learn.microsoft.com/api/credentials/share/en-us/Atharva-3176/72CB26F98B412A2C?sharingId',
-    logo: '/assets/certifications/microsoft.png',
+    logo: '/assets/certifications/microsoft.svg',
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const CERTIFICATIONS = [
     issuer: 'Cisco',
     date: 'May 2024',
     credentialLink: 'https://www.credly.com/badges/bacd06fb-bc32-4119-b94f-1ca724a0859b/linked_in_profile',
-    logo: '/assets/certifications/cisco.png',
+    logo: '/assets/certifications/cisco.svg',
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const CERTIFICATIONS = [
     issuer: 'Cisco',
     date: 'May 2024',
     credentialLink: 'https://www.credly.com/badges/2ba9ee36-5df8-4c0c-a9ef-e058192a32fb/linked_in_profile',
-    logo: '/assets/certifications/cisco.png',
+    logo: '/assets/certifications/cisco.svg',
   },
   {
     id: 4,
@@ -32,7 +32,7 @@ const CERTIFICATIONS = [
     issuer: 'Cisco',
     date: 'May 2024',
     credentialLink: 'https://www.credly.com/badges/2ba9ee36-5df8-4c0c-a9ef-e058192a32fb/linked_in_profile',
-    logo: '/assets/certifications/cisco.png',
+    logo: '/assets/certifications/cisco.svg',
   },
   {
     id: 5,
@@ -40,7 +40,7 @@ const CERTIFICATIONS = [
     issuer: 'University of British Columbia',
     date: 'Dec 2023',
     credentialLink: 'https://ca.badgr.com/public/assertions/JlZRUidGR5aKg-rrIr0x-Q',
-    logo: '/assets/certifications/canvas.png',
+    logo: '/assets/certifications/canvas.svg',
   },
 ];
 
