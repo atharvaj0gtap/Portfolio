@@ -132,15 +132,26 @@ const StarryBackground = ({
       }
     }
 
-    sizeCanvases();
-    generateStars();
-    drawStaticLayer();
-    rafId = requestAnimationFrame(tick);
+    const initId = requestIdleCallback
+      ? requestIdleCallback(() => {
+          sizeCanvases();
+          generateStars();
+          drawStaticLayer();
+          rafId = requestAnimationFrame(tick);
+        }, { timeout: 500 })
+      : setTimeout(() => {
+          sizeCanvases();
+          generateStars();
+          drawStaticLayer();
+          rafId = requestAnimationFrame(tick);
+        }, 0);
 
     window.addEventListener('resize', handleResize);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
+      if (requestIdleCallback) cancelIdleCallback(initId);
+      else clearTimeout(initId);
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (rafId !== null) cancelAnimationFrame(rafId);

@@ -61,14 +61,14 @@ const RevealWrapper = ({
   const initialTransform = directionMap[direction] || directionMap.up;
 
   return (
-    <div 
+    <div
       ref={ref}
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'none' : initialTransform,
         transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
-        willChange: 'opacity, transform'
+        willChange: isVisible ? 'auto' : 'opacity, transform'
       }}
     >
       {children}

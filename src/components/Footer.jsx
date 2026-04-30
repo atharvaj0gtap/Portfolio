@@ -1,4 +1,5 @@
 import React from 'react';
+import { smoothScrollTo } from '../utils/smoothScroll';
 
 const Footer = () => (
   <footer className="border-t border-border-subtle/40 bg-surface-base/80 backdrop-blur-sm">
@@ -11,7 +12,7 @@ const Footer = () => (
         </a>
         <a
           href="#top"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onClick={(e) => { e.preventDefault(); smoothScrollTo('home'); }}
           className="hover:text-text-secondary transition-colors"
         >
           Back to top ↑

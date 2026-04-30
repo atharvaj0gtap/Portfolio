@@ -10,15 +10,26 @@ const Home = () => {
     const reduced = window.innerWidth < 1024;
     let mounted = true;
     let cleanup;
+    let timerId;
 
-    import('./HeroScene').then(({ createHeroScene }) => {
-      if (!mounted || !canvasRef.current) return;
-      cleanup = createHeroScene(canvasRef.current, { reduced });
-      setSceneReady(true);
-    });
+    const load = () => {
+      import('./HeroScene').then(({ createHeroScene }) => {
+        if (!mounted || !canvasRef.current) return;
+        cleanup = createHeroScene(canvasRef.current, { reduced });
+        setSceneReady(true);
+      });
+    };
+
+    if (typeof requestIdleCallback !== 'undefined') {
+      timerId = requestIdleCallback(load, { timeout: 1000 });
+    } else {
+      timerId = setTimeout(load, 150);
+    }
 
     return () => {
       mounted = false;
+      if (typeof cancelIdleCallback !== 'undefined') cancelIdleCallback(timerId);
+      else clearTimeout(timerId);
       cleanup?.();
     };
   }, []);
