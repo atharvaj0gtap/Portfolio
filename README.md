@@ -47,6 +47,8 @@ Live at [jagtapworks.com](https://jagtapworks.com)
 - **Fonts** — Self-hosted woff2 with `<link rel="preload">`, `font-display: swap`
 - **Cache** — Cloudflare `_headers` sets 1-year immutable cache on `/assets/*` and `/fonts/*`
 
+![](src\assets\ScoreScreenshot.png)
+
 ## Getting Started
 
 ```bash
