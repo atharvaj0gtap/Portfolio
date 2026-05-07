@@ -32,9 +32,10 @@ export const FEATURED_PROJECTS = [
     title: "Portfolio Website",
     description: "Modern, responsive portfolio with animations, interactive micro-UX, and 3D elements.",
     bullets: [
-      "Developed a responsive portfolio with React (Vite) and Tailwind CSS on Cloudflare Pages, implementing code-splitting, lazy-loading, image compression, and HTTP/3 + Brotli, achieving 90+ Lighthouse scores across Performance, Accessibility, and SEO.",
-      "Integrated GSAP ScrollTrigger and Three.js for scroll-driven animations and lightweight 3D scenes, enhancing interactive micro-UX without performance degradation.",
-      "Architected a modular component library and end-to-end CI/CD pipeline (Git + Cloudflare Pages + automated SSL/TLS), cutting development time by 40% and ensuring 100% uptime under Full-Strict SSL.",
+      "Developed a responsive portfolio with React (Vite), TypeScript, and Tailwind CSS on Cloudflare Pages, implementing code-splitting, lazy-loading, tree-shaken imports, and HTTP/3 + Brotli compression, cutting initial bundle size by ~800KB and achieving 90+ Lighthouse scores in Performance, Accessibility, and SEO.", 
+      "Engineered a custom Three.js hero scene with geometric primitives, mouse parallax, and an ambient particle field alongside a re-architected two-layer starfield canvas using pre-rendered sprites that reduced per-frame CPU cost by ~10x and preserved battery life on mobile devices.", 
+      "Architected a complete brand identity system with custom design tokens, self-hosted variable fonts, and a modular component library, paired with an end-to-end CI/CD pipeline (Git + Cloudflare Pages + automated SSL/TLS) that cut development time by 40% and ensured 100% uptime under Full-Strict SSL.", 
+
     ],
     technologies: ["React", "Tailwind CSS", "GSAP", "Three.js", "Vite"],
     projectLink: "https://github.com/atharvaj0gtap/Portfolio",
