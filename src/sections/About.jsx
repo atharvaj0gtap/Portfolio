@@ -102,11 +102,15 @@ const About = () => (
             </p>
           </div>
 
-          {/* Photo — replace the div below with an <img> when ready */}
-          {/* <img src="/assets/photo.jpg" alt="Atharva Jagtap" className="hidden md:block rounded-2xl w-full aspect-[4/5] object-cover object-top" /> */}
-          <div className="hidden md:flex items-center justify-center rounded-2xl bg-surface-raised border border-border-subtle aspect-[4/5]">
-            <span className="font-mono text-xs text-text-muted">Photo Coming Soon</span>
-          </div>
+          {/* Photo */}
+          <img
+            src="/assets/photo.jpg"
+            alt="Atharva Jagtap"
+            width="260"
+            height="325"
+            loading="lazy"
+            className="hidden md:block rounded-2xl w-full aspect-[4/5] object-cover object-top border border-border-subtle"
+          />
 
         </div>
       </RevealWrapper>
