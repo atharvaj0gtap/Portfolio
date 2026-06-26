@@ -53,7 +53,7 @@ const SKILL_CATEGORIES = [
 
 const About = () => (
   <section id="about" className="min-h-screen p-6 md:p-16 content-center">
-    <div className="max-w-5xl mx-auto mt-20 md:mt-0">
+    <div className="relative z-10 max-w-5xl mx-auto mt-20 md:mt-0">
 
       {/* Header */}
       <RevealWrapper delay={0.1} duration={0.6}>
