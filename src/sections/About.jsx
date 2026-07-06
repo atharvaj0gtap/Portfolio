@@ -25,16 +25,15 @@ const About = () => (
 
         {/* Photo + tools + credentials */}
         <div className="space-y-8">
-          <figure className="m-0">
+          <figure className="m-0 max-w-[16rem] mx-auto md:mx-0">
             <img
-              src="/assets/photo.jpg"
+              src="/assets/photo.webp"
               alt="Atharva Jagtap"
               width="256"
               height="320"
               loading="lazy"
-              className="w-full max-w-[16rem] aspect-[4/5] object-cover object-top border border-hair"
+              className="w-full aspect-[4/5] object-cover object-top border border-hair"
             />
-            <figcaption className="annot mt-2">vancouver, bc — 2026</figcaption>
           </figure>
 
           <p className="annot border-t border-hair pt-4 m-0">{ABOUT.credentials}</p>

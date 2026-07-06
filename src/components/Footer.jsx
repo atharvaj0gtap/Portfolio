@@ -3,8 +3,17 @@ import { NOW } from '../data/content';
 
 const CertificationsModal = lazy(() => import('./CertificationsModal'));
 
-const Footer = () => {
+const Footer = ({ onSkyDive }) => {
   const [certsOpen, setCertsOpen] = useState(false);
+
+  /* Easter egg trigger, reachable on every screen size (the header one is
+     desktop-only): warp away from the exact point tapped. */
+  const handleCoords = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = r.left + r.width / 2 + window.scrollX;
+    const y = r.top + r.height / 2 + window.scrollY;
+    onSkyDive(`${x}px ${y}px`);
+  };
 
   return (
     <footer className="px-6 pb-10 pt-4">
@@ -15,7 +24,9 @@ const Footer = () => {
             <span className="text-accent">✦</span> startup ·{' '}
             <span className="text-accent">✧</span> experiment
           </p>
-          <p className="annot m-0">charted 2026 · {NOW.place.toLowerCase()}</p>
+          <button onClick={handleCoords} className="annot m-0 hover:text-accent transition-colors">
+            {NOW.star}
+          </button>
         </div>
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 mt-3">
           <p className="annot m-0">© {new Date().getFullYear()} Atharva Jagtap</p>

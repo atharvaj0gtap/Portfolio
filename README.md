@@ -1,55 +1,60 @@
-# JagtapWorks Portfolio
+# JagtapWorks Portfolio — v3 "Day Chart / Night Chart"
 
-Personal portfolio of **Atharva Jagtap**. A software engineer and UBC Computer Science graduate.
+Personal portfolio of **Atharva Jagtap**. Software engineer, UBC Computer Science '25.
 
 Live at [jagtapworks.com](https://jagtapworks.com)
 
-## Tech Stack
+## The concept
+
+The site is a star atlas with two lightings. **Day** reads like a vintage chart printed in ink: paper ground, cobalt accent, graticule arcs and printed star marks. **Night** is the same page with the lights off: twilight gradient, glowing stars, luminous cobalt. The ☉/☾ toggle in the header switches between them (system preference by default, persisted in localStorage).
+
+Work is classified like star magnitudes throughout: **●** client work · **✦** startup · **✧** experiment.
+
+## Tech stack
 
 | Layer | Technology |
 |-------|-----------|
 | Framework | React 18 + Vite |
-| Styling | Tailwind CSS 3 + custom CSS design tokens |
-| 3D / WebGL | Three.js (hero scene + planetary testimonials) |
-| Animation | GSAP + CSS transitions |
+| Styling | Tailwind CSS 3 over CSS custom-property design tokens (one token set per theme) |
+| Graphics | Hand-built inline SVG — constellation chart, site-wide sky field, brand mark. No WebGL, no animation library |
 | SEO | react-helmet-async + JSON-LD structured data |
 | Deployment | Cloudflare Pages |
-| Fonts | Instrument Serif, Instrument Sans, JetBrains Mono (self-hosted woff2) |
+| Fonts | Archivo (variable, width + weight axes) and JetBrains Mono, self-hosted woff2 |
 
 ## Sections
 
-**Home** — Full-viewport hero with a live Three.js "Constellation of Thought" scene: a torus knot, icosahedra, a dodecahedron, spheres, and a gold particle field arranged diagonally. Staggered text reveal on load. Mobile falls back to a CSS gradient.
+**Home** — Oversized name against an interactive constellation charting the real path (Dubai → Kelowna → Vancouver); hovering a star prints its chapter in the figure caption. A now/open-to/contact block and a numbered index of the site's sections.
 
-**About** — First-person bio alongside categorised skill groups (Languages, Frameworks, Data & ML, Cloud & DevOps) with icon + label pills.
+**01 Case studies** — Expandable rows, newest first, each told as *problem → what I built → what broke → outcome*. The "what broke" notes are real. An experiments archive follows: image plate, two honest sentences, repo link, with the deeper cuts behind a "view full archive" toggle.
 
-**Projects** — Three featured cards with alternating image/text layout, 3D cursor-tilt effect, and quantified result stats. Seven additional projects in a compact grid below, each opening a full modal with bullets, tech tags, and a GitHub link.
+**02 About** — First-person bio, photo, credentials.
 
-**Testimonials** — Interactive Three.js planetary system. Each planet is a real testimonial; hovering reveals a preview bubble, clicking opens a modal. The sun displays a personal message on hover. Fully keyboard-accessible.
+**03 Contact** — Email as display type, links, resume download.
 
-**Contact** — Giant gold email CTA, three link cards (GitHub, LinkedIn, Resume download), closing tagline.
+**Footer** — Magnitude legend, certifications modal, copyright.
 
-**Footer** — One-line minimal bar with Certifications modal trigger, back-to-top, and copyright.
+## Design system notes
 
-## Featured Projects
-
-| Project | Stack | Result |
-|---------|-------|--------|
-| Insurance Policy Software (BFL Canada) | React, Node.js, MySQL, Java, Playwright, Jest | 80% reduction in manual review time |
-| Jersey Number Recognition | TensorFlow, PyTorch, Pandas, OpenCV | +18% classifier accuracy |
-| Portfolio Website | React, Three.js, GSAP, Tailwind, Vite | 90+ Lighthouse score |
+- All copy lives in [`src/data/content.js`](src/data/content.js) — components are layout only
+- Every color on the site is a CSS variable defined once per theme in [`src/index.css`](src/index.css)
+- The scrollbar is a comet (WebKit browsers; Firefox gets a thin cobalt line)
+- The brand mark ("gentle rise": two ink dots on an arc, terminating at Polaris) lives in [`src/components/Mark.jsx`](src/components/Mark.jsx); all raster brand assets (favicons, og-image, avatar, LinkedIn banner) regenerate from one script: `node scripts/gen-brand.mjs`
+- Some things are not documented. Follow the star.
 
 ## Performance
 
-- **Code splitting** — Three.js, GSAP, and vendor chunks isolated via Vite `manualChunks`
-- **Lazy loading** — Testimonials section, ProjectModal, and CertificationsModal loaded on demand
-- **StarryBackground** — Two-layer canvas: 70% of stars drawn once (static), 30% twinkling at 30fps cap using pre-rendered sprites. DPR capped at 1
-- **Images** — WebP project images, `loading="lazy"` and explicit dimensions on all `<img>` tags
-- **Fonts** — Self-hosted woff2 with `<link rel="preload">`, `font-display: swap`
-- **Cache** — Cloudflare `_headers` sets 1-year immutable cache on `/assets/*` and `/fonts/*`
+**Lighthouse 100 / 100 / 100 / 100** — Performance, Accessibility, Best Practices, SEO — plus 3/3 on the agentic-browsing checks.
 
-![Lighthouse Score](src/assets/ScoreScreenshot.png)
+![Lighthouse: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO](docs/lighthouse-v3.png)
 
-## Getting Started
+- No Three.js, no GSAP — all motion is CSS; the sky is static SVG with zero per-frame cost
+- ~65 KB gzipped JS total (vendor included); easter-egg and modal chunks lazy-load on demand
+- Self-hosted variable fonts with `<link rel="preload">` and `font-display: swap`
+- WebP images with `loading="lazy"` and explicit dimensions
+- Cloudflare `_headers` sets 1-year immutable cache on `/assets/*` and `/fonts/*`
+- Motion always plays: the site deliberately ignores `prefers-reduced-motion`, since the choreography is part of the design and the OS flag is commonly off for non-accessibility reasons
+
+## Getting started
 
 ```bash
 npm install
@@ -62,12 +67,10 @@ Node 18+ required.
 
 ## Deployment
 
-Deployed to **Cloudflare Pages** with automatic builds on push to `main`.
+Deployed to **Cloudflare Pages** with automatic builds on push.
 
 ```
 Build command:    npm run build
 Output directory: dist
 Node version:     18
 ```
-
-Cloudflare settings: Auto Minify on, Brotli on, HTTP/3 on, Rocket Loader **off** (conflicts with Three.js), Mirage **off**.

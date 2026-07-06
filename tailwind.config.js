@@ -4,6 +4,11 @@
 // so the same utility classes render correctly under both themes.
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
+  future: {
+    // Compile hover: utilities inside @media (hover: hover) so tapped
+    // elements on touch screens don't keep their hover state.
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       fontFamily: {
