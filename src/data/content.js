@@ -192,7 +192,7 @@ export const EXPERIMENTS = [
   },
   {
     title: 'This site',
-    image: '/assets/logos/og-image.png',
+    image: '/assets/projects/SiteThumb.webp',
     description:
       'The page you are reading. A star atlas with a day and a night mode, built with React and Vite and served free on Cloudflare Pages. The design, the copy and the constellation mark are all custom work.',
     href: 'https://github.com/atharvaj0gtap/Portfolio',

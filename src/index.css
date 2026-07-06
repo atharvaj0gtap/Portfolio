@@ -113,6 +113,7 @@ html {
 }
 
 body {
+  -webkit-tap-highlight-color: transparent;
   background-color: var(--ground);
   background-image: radial-gradient(130% 100% at 50% 0%, var(--ground-glow) 0%, var(--ground) 65%);
   background-attachment: fixed;
@@ -213,14 +214,28 @@ h1, h2, h3 {
   color: var(--ink-faint);
   transition: transform 160ms ease, color 160ms ease;
 }
-.index-row:hover .row-arrow,
 .index-row:focus-visible .row-arrow {
   transform: translateX(6px);
   color: var(--accent);
 }
-.index-row:hover .row-title,
 .index-row:focus-visible .row-title {
   color: var(--accent);
+}
+@media (hover: hover) {
+  .index-row:hover .row-arrow {
+    transform: translateX(6px);
+    color: var(--accent);
+  }
+  .index-row:hover .row-title {
+    color: var(--accent);
+  }
+}
+@media (hover: none) {
+  .index-row:active .row-title,
+  .index-row:active .row-arrow,
+  .ink-link:active {
+    color: var(--accent);
+  }
 }
 
 /* Underlined text links */
@@ -230,8 +245,10 @@ h1, h2, h3 {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
-.ink-link:hover {
-  text-decoration-thickness: 2px;
+@media (hover: hover) {
+  .ink-link:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 
 /* Constellation draw-in: plays once on load */
@@ -250,11 +267,158 @@ h1, h2, h3 {
   animation: star-rise 700ms ease-out both;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-delay: 0ms !important;
-    transition-duration: 0.01ms !important;
+/* ==========================================================================
+   The Polaris easter egg — a journey in three acts, and the same film in
+   reverse on the way home.
+     Act 1  0.0s–2.0s  departure: the page slides past the camera, crisp
+     Act 2  0.35s–3.7s travel: star layers stream outward past the viewer
+     Act 3  2.2s–5.7s  arrival: Ursa Minor approaches from the distance
+   ========================================================================== */
+
+/* Departure. No blur — everything stays legible as it passes. The fade only
+   begins once the page is genuinely "behind" the camera (60% of the travel).
+   The base-state transition is the RETURN trip: delayed so the sky recedes
+   first, then the page glides back in. */
+.page-warp {
+  transition:
+    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) 1150ms,
+    opacity 900ms ease-out 1250ms;
+}
+.page-warp.warping {
+  transform: scale(6);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 2000ms cubic-bezier(0.55, 0, 0.85, 0.6),
+    opacity 800ms ease-in 1100ms;
+}
+
+/* The sky container is transparent at first so the streaming stars overlap
+   the departing page; deep space fades in behind them. */
+.sky-dive {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  cursor: pointer;
+}
+.sky-dive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 70% 20%, hsl(230, 40%, 10%) 0%, hsl(233, 45%, 4%) 65%);
+}
+.sky-dive-enter::before { animation: sky-bg-in 1400ms ease 300ms both; }
+.sky-dive-exit::before  { animation: sky-bg-out 1900ms ease 700ms both; }
+.sky-dive-exit { pointer-events: none; }
+.sky-dive svg { position: relative; }
+
+@keyframes sky-bg-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sky-bg-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* Act 2 — travel. Three parallax layers scale outward from the center of
+   the frame, offset so the stream feels continuous. On exit they run
+   backward: space flying the other way. */
+.travel-layer {
+  transform-box: view-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.sky-dive-enter .tl-1 { animation: fly-past 1.2s linear 0.35s 2 both; }
+.sky-dive-enter .tl-2 { animation: fly-past 1.2s linear 0.8s 2 both; }
+.sky-dive-enter .tl-3 { animation: fly-past 1.2s linear 1.25s 2 both; }
+.sky-dive-exit .tl-1 { animation: fly-back 1.5s linear 0.45s both; }
+.sky-dive-exit .tl-2 { animation: fly-back 1.5s linear 0.65s both; }
+.sky-dive-exit .tl-3 { animation: fly-back 1.5s linear 0.25s both; }
+
+@keyframes fly-past {
+  0%   { transform: scale(0.22); opacity: 0; }
+  18%  { opacity: 0.9; }
+  82%  { opacity: 0.9; }
+  100% { transform: scale(2.7); opacity: 0; }
+}
+@keyframes fly-back {
+  0%   { transform: scale(2.7); opacity: 0; }
+  20%  { opacity: 0.9; }
+  100% { transform: scale(0.22); opacity: 0; }
+}
+
+/* Act 3 — arrival. The whole destination sky (dipper, field, labels) starts
+   small and distant, aimed at Polaris, and decelerates to rest. Exit is the
+   exact reverse: it recedes back into the distance first. */
+.dipper {
+  transform-box: view-box;
+  transform-origin: 65% 35%;
+}
+.sky-dive-enter .dipper { animation: approach 2000ms cubic-bezier(0.16, 1, 0.3, 1) 2.2s both; }
+.sky-dive-exit .dipper  { animation: recede 1000ms cubic-bezier(0.7, 0, 0.84, 0) both; }
+
+@keyframes approach {
+  from { transform: scale(0.22); opacity: 0; }
+  40%  { opacity: 1; }
+  to   { transform: translateX(-120px) scale(0.62); opacity: 1; }
+}
+@keyframes recede {
+  from { transform: translateX(-120px) scale(0.62); opacity: 1; }
+  to   { transform: scale(0.2); opacity: 0; }
+}
+
+.dest-field { transform-box: view-box; opacity: 0; }
+.sky-dive-enter .dest-field { animation: sky-bg-in 1200ms ease 2.2s both; }
+.sky-dive-exit .dest-field { animation: sky-bg-out 500ms ease both; }
+
+/* HTML annotations vanish immediately when leaving */
+.sky-dive-exit .sky-fade { animation: sky-bg-out 350ms ease both !important; }
+
+@keyframes line-draw { to { stroke-dashoffset: 0; } }
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.sky-title {
+  position: absolute;
+  top: 1.4rem;
+  left: 1.5rem;
+  margin: 0;
+  color: hsl(227, 16%, 70%);
+}
+.sky-close {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.5rem;
+  color: hsl(227, 16%, 70%);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .sky-close:hover { color: hsl(216, 100%, 74%); }
+}
+.sky-caption {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(34rem, calc(100vw - 3rem));
+  text-align: center;
+  color: hsl(40, 30%, 94%);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.sky-caption .annot { color: hsl(227, 12%, 54%); }
+@media (orientation: portrait) {
+  /* Letterboxed portrait framing leaves the constellation small: scale the
+     whole sky drawing up. Overflow is invisible (fixed, full-viewport). */
+  .sky-dive svg {
+    transform: scale(1.45);
+    transform-origin: 50% 48%;
   }
 }
+@media (max-width: 640px) {
+  .sky-title {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    max-width: 58vw;
+  }
+  .sky-caption { font-size: 0.88rem; }
+}
+

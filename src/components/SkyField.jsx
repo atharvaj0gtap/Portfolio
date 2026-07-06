@@ -42,9 +42,9 @@ const SkyField = () => (
       {NIGHT_STARS.map(([x, y, r, o], i) => (
         <circle key={i} cx={x} cy={y} r={r} opacity={o} />
       ))}
-      {/* two brighter stars with a cobalt halo */}
-      <circle cx="420" cy="80" r="9" style={{ fill: 'var(--star-glow)' }} opacity="0.35" />
-      <circle cx="420" cy="80" r="1.6" />
+      {/* two brighter stars with a cobalt halo, in the margins clear of the content column */}
+      <circle cx="60" cy="480" r="9" style={{ fill: 'var(--star-glow)' }} opacity="0.35" />
+      <circle cx="60" cy="480" r="1.6" />
       <circle cx="1330" cy="520" r="11" style={{ fill: 'var(--star-glow)' }} opacity="0.3" />
       <circle cx="1330" cy="520" r="1.8" />
     </g>

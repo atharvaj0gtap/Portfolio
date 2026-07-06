@@ -43,6 +43,10 @@ Work is classified like star magnitudes throughout: **●** client work · **✦
 
 ## Performance
 
+**Lighthouse 100 / 100 / 100 / 100** — Performance, Accessibility, Best Practices, SEO — plus 3/3 on the agentic-browsing checks.
+
+![Lighthouse: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO](docs/lighthouse-v3.png)
+
 - No Three.js, no GSAP — all motion is CSS; the sky is static SVG with zero per-frame cost
 - ~65 KB gzipped JS total (vendor included); easter-egg and modal chunks lazy-load on demand
 - Self-hosted variable fonts with `<link rel="preload">` and `font-display: swap`

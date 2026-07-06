@@ -1,0 +1,21 @@
+# Atharva Jagtap — JagtapWorks
+
+> Portfolio of Atharva Jagtap, a 2025 UBC Computer Science graduate based in Vancouver, BC. He ships real software: an AI policy-comparison pipeline for an insurance client, carbon-accounting software for a nonprofit, production RAG systems, and test automation for provincial e-assessment platforms. Open to solutions engineering and applied-AI roles, plus a small number of freelance builds.
+
+The site is a single page styled as a star atlas with a day and a night mode. Case studies are told honestly: problem, what was built, what broke, outcome. Work is classified like star magnitudes: ● client work, ✦ startup, ✧ experiment.
+
+## Site
+
+- [Home](https://jagtapworks.com/): introduction, the path constellation, and the site index
+- [Case studies](https://jagtapworks.com/#work): client work for Vretta, Arts Factory Society, Vosyn, and BFL Canada, the NxtMeals startup, and an experiments archive
+- [About](https://jagtapworks.com/#about): bio, photo, and credentials
+- [Contact](https://jagtapworks.com/#contact): email and links
+
+## Documents
+
+- [Resume (PDF)](https://jagtapworks.com/assets/certifications/AtharvaJagtap_Resume.pdf): full experience, education, and skills
+
+## Elsewhere
+
+- [GitHub](https://github.com/atharvaj0gtap): source for this site and project repositories
+- [LinkedIn](https://www.linkedin.com/in/atharvahjagtap/): professional profile
