@@ -1,27 +1,42 @@
-import React from 'react';
-import { smoothScrollTo } from '../utils/smoothScroll';
+import { lazy, Suspense, useState } from 'react';
+import { NOW } from '../data/content';
 
-const Footer = () => (
-  <footer className="border-t border-border-subtle/40 bg-surface-base/80 backdrop-blur-sm">
-    <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">
-      <span className="font-display text-sm text-text-secondary">JagtapWorks</span>
+const CertificationsModal = lazy(() => import('./CertificationsModal'));
 
-      <div className="flex items-center gap-4">
-        <a href="#certifications" className="hover:text-text-secondary transition-colors">
-          Certifications
-        </a>
-        <a
-          href="#top"
-          onClick={(e) => { e.preventDefault(); smoothScrollTo('home'); }}
-          className="hover:text-text-secondary transition-colors"
-        >
-          Back to top ↑
-        </a>
+const Footer = () => {
+  const [certsOpen, setCertsOpen] = useState(false);
+
+  return (
+    <footer className="px-6 pb-10 pt-4">
+      <div className="max-w-page mx-auto">
+        <div className="border-t border-hair pt-4 flex flex-wrap justify-between gap-x-6 gap-y-2">
+          <p className="annot m-0">
+            legend — <span className="text-accent">●</span> client work ·{' '}
+            <span className="text-accent">✦</span> startup ·{' '}
+            <span className="text-accent">✧</span> experiment
+          </p>
+          <p className="annot m-0">charted 2026 · {NOW.place.toLowerCase()}</p>
+        </div>
+        <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 mt-3">
+          <p className="annot m-0">© {new Date().getFullYear()} Atharva Jagtap</p>
+          <p className="annot m-0">
+            <button
+              onClick={() => setCertsOpen(true)}
+              className="hover:text-accent transition-colors underline decoration-1 underline-offset-2"
+            >
+              certifications
+            </button>
+          </p>
+        </div>
       </div>
 
-      <span>© {new Date().getFullYear()} · Built with Intention.</span>
-    </div>
-  </footer>
-);
+      {certsOpen && (
+        <Suspense fallback={null}>
+          <CertificationsModal onClose={() => setCertsOpen(false)} />
+        </Suspense>
+      )}
+    </footer>
+  );
+};
 
 export default Footer;

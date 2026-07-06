@@ -1,37 +1,51 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/assets/logos/IconLogo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/assets/logos/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0E1017" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#F3F2EF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0E19" media="(prefers-color-scheme: dark)" />
+
+    <!-- Day/night chart: resolve theme before first paint to avoid flash -->
+    <script>
+      (function () {
+        var saved = localStorage.getItem('jw-theme');
+        var theme = saved === 'day' || saved === 'night'
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme === 'night' ? 'dark' : 'light';
+      })();
+    </script>
 
     <!-- Fonts: self-hosted woff2 files in /public/fonts/ -->
-    <link rel="preload" href="/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Enhanced SEO meta tags -->
-    <title>JagtapWorks | Atharva Jagtap — Software Engineer, Strategist, Builder</title>
-    <meta name="description" content="The portfolio of Atharva Jagtap — UBC Computer Science graduate, NxtMeals co-founder, and software engineer working at the intersection of computer science, finance, and psychology." />
-    <meta name="keywords" content="software engineer, data analyst, portfolio, NxtMeals, UBC, full-stack, machine learning, React, developer, Atharva Jagtap" />
+    <title>Atharva Jagtap — Software engineer, UBC '25 | JagtapWorks</title>
+    <meta name="description" content="Atharva Jagtap is a 2025 UBC Computer Science graduate who ships real software — an AI policy-comparison pipeline for an insurance client, carbon-accounting software, production RAG systems — and is going deep on AI that survives production." />
+    <meta name="keywords" content="Atharva Jagtap, software engineer, UBC, applied AI, RAG, solutions engineering, carbon accounting, JagtapWorks" />
     <meta name="author" content="Atharva Jagtap" />
 
     <!-- Control robots -->
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph meta tags for social sharing -->
-    <meta property="og:title" content="JagtapWorks | Portfolio of Atharva Jagtap" />
-    <meta property="og:description" content="Software engineer, strategist, builder. Systems that turn ideas into impact." />
+    <meta property="og:title" content="Atharva Jagtap — Software engineer, UBC '25" />
+    <meta property="og:description" content="I ship real software for real clients, and I'm going deep on AI that survives production." />
     <meta property="og:image" content="https://jagtapworks.com/assets/logos/og-image.png" />
     <meta property="og:url" content="https://jagtapworks.com" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="JagtapWorks | Portfolio of Atharva Jagtap" />
-    <meta name="twitter:description" content="Software engineer, strategist, builder. Systems that turn ideas into impact." />
+    <meta name="twitter:title" content="Atharva Jagtap — Software engineer, UBC '25" />
+    <meta name="twitter:description" content="I ship real software for real clients, and I'm going deep on AI that survives production." />
     <meta name="twitter:image" content="https://jagtapworks.com/assets/logos/og-image.png" />
   </head>
   <body>

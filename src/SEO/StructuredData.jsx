@@ -40,7 +40,7 @@ const StructuredData = () => {
     "@type": "WebSite",
     "name": "JagtapWorks",
     "url": "https://jagtapworks.com",
-    "description": "Portfolio of Atharva Jagtap — software engineer, NxtMeals co-founder, and UBC Computer Science graduate working at the intersection of computer science, finance, and psychology."
+    "description": "Portfolio of Atharva Jagtap — 2025 UBC Computer Science graduate shipping real software for real clients: insurance AI, carbon accounting, production RAG."
   };
 
   return (
