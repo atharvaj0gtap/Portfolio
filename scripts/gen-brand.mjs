@@ -78,7 +78,8 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <g transform="translate(90,150) scale(9)">${mark(NIGHT, { glow: true })}</g>
   <text x="400" y="300" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="76" letter-spacing="-2" fill="${NIGHT.ink}">ATHARVA JAGTAP</text>
   <text x="404" y="360" font-family="Consolas, 'Courier New', monospace" font-size="24" letter-spacing="5" fill="#9AA3BD">SOFTWARE ENGINEER · UBC '25</text>
-  <text x="404" y="410" font-family="Consolas, 'Courier New', monospace" font-size="26" letter-spacing="6" fill="${NIGHT.acc}">AI THAT SURVIVES PRODUCTION</text>
+  <text x="404" y="410" font-family="Consolas, 'Courier New', monospace" font-size="26" letter-spacing="6" fill="${NIGHT.acc}">I BUILD SYSTEMS THAT TAKE</text>
+  <text x="404" y="448" font-family="Consolas, 'Courier New', monospace" font-size="26" letter-spacing="6" fill="${NIGHT.acc}">MANUAL WORK OFF YOUR HANDS.</text>
   <text x="404" y="560" font-family="Consolas, 'Courier New', monospace" font-size="22" letter-spacing="4" fill="#9AA3BD">JAGTAPWORKS.COM</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile('public/assets/logos/og-image.png');
@@ -103,8 +104,9 @@ const banner = `<svg xmlns="http://www.w3.org/2000/svg" width="3168" height="792
     <circle cx="1080" cy="60" r="1.5" opacity="0.5"/><circle cx="1400" cy="320" r="1.8" opacity="0.6"/>
     <circle cx="760" cy="180" r="1.3" opacity="0.35"/><circle cx="1220" cy="140" r="1.6" opacity="0.45"/>
   </g>
-  <text x="560" y="185" font-family="Consolas, 'Courier New', monospace" font-size="30" letter-spacing="8" fill="${NIGHT.acc}">AI THAT SURVIVES PRODUCTION</text>
-  <text x="562" y="235" font-family="Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#9AA3BD">SOFTWARE ENGINEER · UBC '25 · JAGTAPWORKS.COM</text>
+  <text x="560" y="160" font-family="Consolas, 'Courier New', monospace" font-size="30" letter-spacing="8" fill="${NIGHT.acc}">I BUILD SYSTEMS THAT TAKE</text>
+  <text x="560" y="204" font-family="Consolas, 'Courier New', monospace" font-size="30" letter-spacing="8" fill="${NIGHT.acc}">MANUAL WORK OFF YOUR HANDS.</text>
+  <text x="562" y="256" font-family="Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#9AA3BD">SOFTWARE ENGINEER · UBC '25 · JAGTAPWORKS.COM</text>
   <g transform="translate(1355,55) scale(7)">${mark(NIGHT, { glow: true })}</g>
 </svg>`;
 await sharp(Buffer.from(banner)).png().toFile('public/assets/logos/linkedin-banner.png');

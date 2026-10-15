@@ -1,5 +1,5 @@
 import Constellation from '../components/Constellation';
-import { NOW } from '../data/content';
+import { HERO, NOW } from '../data/content';
 import { smoothScrollTo } from '../utils/smoothScroll';
 
 const INDEX_LINKS = [
@@ -23,12 +23,19 @@ const Home = () => (
 
       {/* Intro + now */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 border-t border-hair pt-7 mb-12">
-        <p className="text-ink text-[1.05rem] leading-relaxed max-w-[28rem] m-0">
-          CS grad, UBC 2025. I ship real software: an AI policy-comparison
-          pipeline for an insurance client, carbon-accounting software for a
-          nonprofit, production RAG systems. Now I&rsquo;m going deep on AI
-          that survives production.
-        </p>
+        <div className="max-w-[28rem]">
+          <p className="text-ink text-[1.3rem] font-semibold leading-snug tracking-tight text-balance m-0 mb-4">
+            {HERO.headline}
+          </p>
+          <ul className="list-none p-0 m-0 space-y-2">
+            {HERO.proof.map(line => (
+              <li key={line} className="flex gap-2 text-ink-soft text-[0.95rem] leading-relaxed">
+                <span className="text-accent shrink-0" aria-hidden="true">+</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
         <dl className="annot leading-loose m-0">
           <div className="flex gap-2">
             <dt className="text-accent shrink-0">now —</dt>

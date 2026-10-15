@@ -34,7 +34,7 @@ function App() {
         <title>Atharva Jagtap — Software engineer, UBC '25 | JagtapWorks</title>
         <meta
           name="description"
-          content="Atharva Jagtap is a 2025 UBC Computer Science graduate who ships real software — an AI policy-comparison pipeline for an insurance client, carbon-accounting software, production RAG systems — and is going deep on AI that survives production."
+          content="Atharva Jagtap builds systems that take manual work off people's hands: outreach automation, HR documents, carbon accounting and test automation. UBC CS '25, Vancouver."
         />
       </Helmet>
       <StructuredData />

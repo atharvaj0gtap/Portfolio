@@ -1,6 +1,6 @@
 # Atharva Jagtap — JagtapWorks
 
-> Portfolio of Atharva Jagtap, a 2025 UBC Computer Science graduate based in Vancouver, BC. He ships real software: an AI policy-comparison pipeline for an insurance client, carbon-accounting software for a nonprofit, production RAG systems, and test automation for provincial e-assessment platforms. Open to solutions engineering and applied-AI roles, plus a small number of freelance builds.
+> Portfolio of Atharva Jagtap, a 2025 UBC Computer Science graduate based in Vancouver, BC. He builds systems that take manual work off people's hands: outreach automation and HR document generation at Vosyn, carbon-accounting software for a nonprofit, an AI policy-comparison pipeline for an insurance client, and test automation for provincial e-assessment platforms. Open to full-time roles in Canada.
 
 The site is a single page styled as a star atlas with a day and a night mode. Case studies are told honestly: problem, what was built, what broke, outcome. Work is classified like star magnitudes: ● client work, ✦ startup, ✧ experiment.
 
