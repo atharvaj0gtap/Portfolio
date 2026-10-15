@@ -17,12 +17,23 @@ export const GLYPHS = {
 
 export const NOW = {
   now: 'shipping test automation at Vretta · building carbon software at Arts Factory',
-  openTo: 'solutions engineering & applied-AI roles',
+  openTo: 'full-time roles in Canada',
   contact: 'atharva@jagtapworks.com',
   place: 'Vancouver, BC',
   /* Not his address: the coordinates of Polaris, the star you navigate by.
      On-concept for the atlas, and it points at nobody's apartment. */
   star: 'RA 02h 31m · Dec +89° 16′',
+};
+
+/* The hero headline, used verbatim (chosen by Atharva, Oct 2026), and the
+   three measured outcomes that prove it. */
+export const HERO = {
+  headline: 'I build systems that take manual work off your hands.',
+  proof: [
+    'About 15 hours a week of email scheduling taken off a sales team, with n8n.',
+    'Roughly 90% less manual carbon estimation for a Vancouver nonprofit.',
+    'HR letters cut from 15 minutes to under 2, with Power Automate.',
+  ],
 };
 
 /* The constellation: Atharva's real geography, one star per city, plotted
@@ -53,7 +64,7 @@ const STUDIES = [
       'End-to-end Playwright and Jest suites at roughly 60% coverage, so broker-facing flows could not silently regress between demos.',
     ],
     broke:
-      'Two months in, my database schema failed. I had modelled it tightly around the first policy documents BFL gave us. When they introduced a policy type with a different structure, queries broke and nothing new could be stored. I owned the call-out, proposed a two-week spike, and we refactored to a flexible schema that handled every later request. The lesson stuck: model what the client will need, not just what they handed you.',
+      'Two months in, my database schema failed. I had modelled it tightly around the first policy documents BFL gave us. When they introduced a policy type with a different structure, queries broke and nothing new could be stored. I owned the call-out, proposed a two-week spike, and we refactored to a flexible schema that handled every later request. The lesson stuck: build the schema for the documents the client hasn’t sent yet.',
     outcome:
       'Cut manual review time by roughly 80% on the document set brokers tested with.',
     stack: ['React', 'Node.js', 'MySQL', 'GROBID', 'Playwright', 'Jest'],
@@ -85,22 +96,22 @@ const STUDIES = [
     id: 'vosyn',
     designation: 'JW-03',
     type: 'client',
-    title: 'RAG that keeps the data home',
+    title: 'Sales outreach and HR paperwork, automated',
     org: 'Vosyn',
     role: 'AI engineer',
     period: 'May 2025 – Apr 2026',
-    oneLiner: 'A local RAG pipeline and the assistant platform on top of it, serving 50+ internal users.',
+    oneLiner: 'Automation that took outreach scheduling and HR letters off two teams, plus the assistant app 50+ colleagues used.',
     problem:
-      'Vosyn wanted an internal AI assistant over company documents without shipping private data to cloud APIs, and without cloud bills scaling with every query.',
+      'Two teams at Vosyn were doing repetitive work by hand. Sales scheduled every outreach email and follow-up manually across 500+ leads, and HR drafted each letter by hand. The company also wanted an internal AI assistant over its own documents, built on a self-hosted RAG service the platform team ran to keep that data off cloud APIs.',
     built: [
-      'A local RAG pipeline built on FastAPI, PostgreSQL with pgvector, Docker, and Ollama running Qwen 3. It ingests documents from GCS into 10,000+ indexed chunks and answers in under 5 seconds.',
-      'Vosyn Insights, the React and TypeScript assistant platform on top: 15+ components, session chat history, role-based permissions, artifact management. I owned it from the Figma designs to full-stack integration, serving 50+ internal users.',
-      'The automation teams actually feel: an n8n outreach workflow that removed about 15 hours a week of manual email scheduling across 500+ leads, and a Power Automate document generator that took HR letters from 15 minutes to under 2.',
+      'An n8n outreach system for the sales team, with configurable follow-up cadences, attempt thresholds, per-lead pause and resume, and a three-bin classification across 500+ active leads. It removed about 15 hours a week of manual email scheduling and cut per-campaign setup from 2 hours to under 10 minutes.',
+      'A Power Automate document generator connecting Microsoft Forms, SharePoint, Excel and Word. HR letters went from 15 minutes to under 2 per request.',
+      'Vosyn Insights, the React and TypeScript assistant app: 15+ components, session chat history, role-based permissions and artifact management. I built it as the client layer on the platform team’s self-hosted RAG service, from the Figma designs to a working app used by 50+ internal users.',
     ],
     broke: null,
     outcome:
-      'Local inference replaced roughly 40% of cloud API spend while keeping company data on company hardware.',
-    stack: ['FastAPI', 'pgvector', 'Docker', 'Ollama', 'React', 'TypeScript', 'n8n', 'Power Automate'],
+      'About 15 hours a week back for the sales team, HR letters in under 2 minutes, and an assistant 50+ colleagues used.',
+    stack: ['React', 'TypeScript', 'n8n', 'Power Automate', 'Google Sheets', 'SharePoint'],
     links: [{ label: 'Vosyn', href: 'https://www.vosyn.ai' }],
   },
   {
@@ -115,7 +126,7 @@ const STUDIES = [
     problem:
       'Vretta builds the e-assessment platform behind large-scale provincial assessments, including EQAO in Ontario and Alberta Education, which runs about 700,000 exams a year on it. Testing was largely manual. I am one of three engineers building the company’s first end-to-end test automation framework.',
     built: [
-      'The Alberta Playwright UAT suite, built solo: typed configuration, a page object model, auth fixtures, fully passing runs. It now sets the template for the other jurisdictions.',
+      'The Alberta Playwright UAT suite, built solo: typed configuration, a page object model and auth fixtures. Still in progress, it already reduces manual work for the Manual QA team and sets the template for the other jurisdictions.',
       'A Python and pandas cheat-detection pipeline that sessionizes scorer activity and flags anomalous behaviour across 2.5 million log rows in 3 to 5 minutes. Deployed as a reusable team tool.',
       'Found and fixed a silent row-drop defect in an AI-driven log-splitting process on a 2M+ row dataset. Rebuilt it as a lossless, time-sorted batching pipeline.',
       'Reported two real security holes: an answer-ID exposure in the developer console and a multi-tab test exploit. Both confirmed and fixed by the platform team.',
@@ -144,7 +155,7 @@ const STUDIES = [
       'Pivoted to test a direct marketing service for food trucks, reaching out across Greater Vancouver to see if we could drive them customer traffic. That phase alone taught me more about outbound sales, market saturation and founder resilience than any classroom.',
     ],
     broke:
-      'The company itself. We brought NxtMeals to a close in January 2026. No drama, just the honest end of the road. What we kept: proving assumptions instead of trusting them, pitching, negotiating, iterating, handling rejection, and operating lean with limited capital. There is a difference between studying entrepreneurship and doing it. We got to do it.',
+      'The company itself. We brought NxtMeals to a close in January 2026. What we kept: proving assumptions instead of trusting them, pitching, negotiating, iterating, handling rejection, and operating lean with limited capital. There is a difference between studying entrepreneurship and doing it. We got to do it.',
     outcome:
       '50+ beta signups, a grocer pilot design, a food-truck experiment, and the best product education I have had.',
     stack: ['Customer discovery', 'Wix', 'Figma', 'Firestore'],
@@ -242,8 +253,8 @@ export const EXPERIMENTS = [
 export const ABOUT = {
   paragraphs: [
     'I started coding in 8th grade with a basic HTML tutorial. I didn’t know it then, but I was hooked on a specific kind of problem: taking something abstract and turning it into something people can actually use. About a decade later, that’s still the whole job.',
-    'I studied Computer Science at UBC, class of 2025 with high distinction. The education I trust most happened outside lecture halls. Two Dubai internships taught me what shipping for real stakeholders feels like. Co-founding NxtMeals taught me that the customer’s real problem is rarely the one you assumed. Building production RAG at Vosyn taught me how to make reliable software out of unreliable models.',
-    'Right now I split my weeks between test automation for provincial assessment platforms at Vretta and carbon-accounting software at Arts Factory. The thread: software where being wrong has consequences. Grades, insurance policies, emissions numbers. That’s also why I’m going deep on applied AI. Most AI demos die on contact with production, and I want to be the person whose systems don’t.',
+    'I studied Computer Science at UBC, class of 2025 with high distinction. The education I trust most happened outside lecture halls. Two Dubai internships taught me what shipping for real stakeholders feels like. Co-founding NxtMeals taught me that the customer’s real problem is rarely the one you assumed. Building the assistant client on top of Vosyn’s RAG service taught me how much of an AI product is the plumbing around the model.',
+    'Right now I split my weeks between test automation for provincial assessment platforms at Vretta and carbon-accounting software at Arts Factory. The thread through all of it: find the work people do by hand, then build the system that does it for them. Usually that work has consequences. Grades, insurance policies, emissions numbers. A system that saves time but gets those wrong is worse than the manual process it replaced. That’s also why I’m going deep on applied AI. Most AI demos die on contact with production, and I want to be the person whose systems don’t.',
     'If I had to pick one word: disciplined. I show up, I finish what I start, and I write down what broke so it doesn’t break twice.',
   ],
   offDuty:

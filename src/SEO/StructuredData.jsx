@@ -40,7 +40,7 @@ const StructuredData = () => {
     "@type": "WebSite",
     "name": "JagtapWorks",
     "url": "https://jagtapworks.com",
-    "description": "Portfolio of Atharva Jagtap — 2025 UBC Computer Science graduate shipping real software for real clients: insurance AI, carbon accounting, production RAG."
+    "description": "Portfolio of Atharva Jagtap, a 2025 UBC Computer Science graduate who builds systems that take manual work off people's hands: outreach automation, HR documents, carbon accounting and test automation."
   };
 
   return (

@@ -12,11 +12,11 @@ const Contact = () => (
 
       <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-3 mb-12">
         <h2 className="annot-caps m-0 !text-ink">03 — Contact</h2>
-        <p className="annot m-0 hidden sm:block">{NOW.place} · working globally</p>
+        <p className="annot m-0 hidden sm:block">{NOW.place} · remote in Canada</p>
       </div>
 
       <p className="text-ink-soft leading-relaxed max-w-[34rem] mb-8">
-        Open to {NOW.openTo}, and I take on a small number of freelance builds.
+        Open to {NOW.openTo}.
         If you&rsquo;ve read a case study and want to talk about it, that&rsquo;s
         the best possible opening line.
       </p>
